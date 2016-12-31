@@ -7,4 +7,12 @@
     android:layout_height="match_parent"
     tools:context="com.software.rmh.walkthroughthebible.Controllers.MainActivity">
 
+    <android.support.design.widget.BottomNavigationView
+        xmlns:design="http://schema.android.com/apk/res/android.support.design"
+        android:id="@+id/bottomNavigationBar"
+        android:layout_height="56dp"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        design:menu="@menu/navigation_bar_items" />
+
 </android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/books"
+          android:icon="@drawable/icon_book"
+          android:title="@string/books" />
+    <item android:id="@+id/glossary"
+          android:icon="@drawable/icon_glossary"
+          android:title="@string/glossary" />
+    <item android:id="@+id/tour"
+          android:icon="@drawable/icon_tour"
+          android:title="@string/tour" />
+    <item android:id="@+id/bibles"
+          android:icon="@drawable/icon_bible"
+          android:title="@string/bibles" />
+    <item android:id="@+id/about"
+          android:icon="@drawable/icon_about"
+          android:title="@string/about" />
+</menu>

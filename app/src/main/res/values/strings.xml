@@ -2,6 +2,11 @@
     <string name="app_name">Walk Through The Bible</string>
     <string name="main_activity_title">Books</string>
     <string name="bibles_title">Bibles</string>
+    <string name="books">Books</string>
+    <string name="glossary">Glossary</string>
+    <string name="tour">Virtual Tour</string>
+    <string name="bibles">Bibles</string>
+    <string name="about">About</string>
 
     <array name="all_books">
         <item>Genesis</item>
