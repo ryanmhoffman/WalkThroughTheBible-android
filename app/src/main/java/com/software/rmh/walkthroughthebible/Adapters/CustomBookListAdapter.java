@@ -5,25 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.software.rmh.walkthroughthebible.R;
-import com.software.rmh.walkthroughthebible.Views.BookListFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a list of Strings and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
+ * {@link RecyclerView.Adapter} that can display a list of Strings.
  */
-public class MyStringRecyclerViewAdapter extends RecyclerView.Adapter<MyStringRecyclerViewAdapter.ViewHolder> {
+public class CustomBookListAdapter extends RecyclerView.Adapter<CustomBookListAdapter.ViewHolder> {
 
 	private final List<String> books;
-	private final OnListFragmentInteractionListener listener;
 
-	public MyStringRecyclerViewAdapter(List<String> items, OnListFragmentInteractionListener listener) {
+	public CustomBookListAdapter(List<String> items) {
 		books = items;
-		this.listener = listener;
 	}
 
 	@Override
@@ -36,16 +32,12 @@ public class MyStringRecyclerViewAdapter extends RecyclerView.Adapter<MyStringRe
 	@Override
 	public void onBindViewHolder(final ViewHolder holder, int position) {
 
-		//holder.textView.setText(books.get(position).content);
+		holder.textView.setText(books.get(position));
 
 		holder.view.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(null != listener) {
-					// Notify the active callbacks interface (the activity, if the
-					// fragment is attached to one) that an item has been selected.
-					//listener.onListFragmentInteraction(holder.mItem);
-				}
+				Toast.makeText(v.getContext(), "Clicked " + holder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
@@ -65,9 +57,5 @@ public class MyStringRecyclerViewAdapter extends RecyclerView.Adapter<MyStringRe
 			textView = (TextView) view.findViewById(R.id.content);
 		}
 
-		@Override
-		public String toString() {
-			return super.toString() + " '" + textView.getText() + "'";
-		}
 	}
 }

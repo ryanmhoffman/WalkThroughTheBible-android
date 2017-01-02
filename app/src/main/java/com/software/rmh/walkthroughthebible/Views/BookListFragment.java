@@ -9,20 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.software.rmh.walkthroughthebible.Adapters.MyStringRecyclerViewAdapter;
+import com.software.rmh.walkthroughthebible.Adapters.CustomBookListAdapter;
 import com.software.rmh.walkthroughthebible.R;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
+ * A fragment representing a list of books in String format.
  */
 public class BookListFragment extends Fragment {
 
-	private OnListFragmentInteractionListener mListener;
 	private List<String> books;
 
 	/**
@@ -40,12 +38,11 @@ public class BookListFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		books = new ArrayList<>();
 
 		String[] booksArray = getResources().getStringArray(R.array.all_books);
 		int len = booksArray.length;
-		for(int i = 0; i < len; i++){
-			books.add(booksArray[i]);
-		}
+		books.addAll(Arrays.asList(booksArray).subList(0, len));
 	}
 
 	@Override
@@ -57,7 +54,7 @@ public class BookListFragment extends Fragment {
 		if(view instanceof RecyclerView) {
 			RecyclerView recyclerView = (RecyclerView) view;
 			recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-			recyclerView.setAdapter(new MyStringRecyclerViewAdapter(books, mListener));
+			recyclerView.setAdapter(new CustomBookListAdapter(books));
 		}
 		return view;
 	}
@@ -66,28 +63,13 @@ public class BookListFragment extends Fragment {
 	@Override
 	public void onAttach(Context context) {
 		super.onAttach(context);
-		if(context instanceof OnListFragmentInteractionListener) {
-			mListener = (OnListFragmentInteractionListener) context;
-		} else {
-			throw new RuntimeException(context.toString()
-					+ " must implement OnListFragmentInteractionListener");
-		}
+
 	}
 
 	@Override
 	public void onDetach() {
 		super.onDetach();
-		mListener = null;
 	}
 
-	/**
-	 * This interface must be implemented by activities that contain this
-	 * fragment to allow an interaction in this fragment to be communicated
-	 * to the activity and potentially other fragments contained in that
-	 * activity.
-	 */
-	public interface OnListFragmentInteractionListener {
-		// TODO: Update argument type and name
-		void onListFragmentInteraction();
-	}
+
 }
