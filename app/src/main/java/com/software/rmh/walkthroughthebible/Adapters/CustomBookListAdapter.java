@@ -1,6 +1,7 @@
 package com.software.rmh.walkthroughthebible.Adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class CustomBookListAdapter extends RecyclerView.Adapter<CustomBookListAd
 	@Override
 	public void onBindViewHolder(final ViewHolder holder, int position) {
 
+		Log.d("ArrayList", books.get(position));
 		holder.textView.setText(books.get(position));
 
 		holder.view.setOnClickListener(new View.OnClickListener() {

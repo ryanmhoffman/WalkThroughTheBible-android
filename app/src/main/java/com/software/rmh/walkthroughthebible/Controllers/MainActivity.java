@@ -1,48 +1,38 @@
 package com.software.rmh.walkthroughthebible.Controllers;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.software.rmh.walkthroughthebible.R;
+import com.software.rmh.walkthroughthebible.Views.BookListFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-	private String[] books;
+	// Keys to identify each Fragment in the stack.
+	private static String BOOKS_FRAGMENT_KEY = "BookList";
+	private static String GLOSSARY_FRAGENT_KEY = "Glossary";
+	private static String TOUR_FRAGMENT_KEY = "VirtualTour";
+	private static String BIBLES_FRAGMENT_KEY = "BiblesList";
+	private static String ABOUT_FRAGMENT_KEY = "About";
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
 		if(savedInstanceState == null){
-			//FragmentTransaction ft = getFragmentManager().beginTransaction();
-			//ft.add(R.id.container, BooksListFragment.newInstance()).commit();
+			Log.d("frag", "test");
+			FragmentTransaction ft = getFragmentManager().beginTransaction();
+			ft.add(BookListFragment.newInstance(), BOOKS_FRAGMENT_KEY).commit();
 		}
 
 		initViews();
 
-		books = getResources().getStringArray(R.array.all_books);
-		// Inflate the layout for this fragment
-		ListView listView = (ListView) findViewById(R.id.listView);
-		ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, books);
-		if(listView != null) {
-			listView.setAdapter(adapter);
-
-			listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-				@Override
-				public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-					Toast.makeText(MainActivity.this, "Clicked " + i, Toast.LENGTH_SHORT).show();
-				}
-			});
-		}
 	}
 
 	private void initViews(){
@@ -51,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 				changeFragment(item);
-				return false;
+				return true;
 			}
 		});
 	}
@@ -62,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 		switch(item.getItemId()){
 			case R.id.books:
 				// Books Fragment
-				//fragment = BooksListFragment.newInstance();
+				fragment = BookListFragment.newInstance();
 				break;
 			case R.id.glossary:
 				// Glossary Fragment
@@ -78,10 +68,10 @@ public class MainActivity extends AppCompatActivity {
 				break;
 		}
 
-		//if(fragment != null){
-		//	FragmentTransaction ft = getFragmentManager().beginTransaction();
-		//	ft.add(R.id.container, fragment);
-		//	ft.commit();
-		//}
+		if(fragment != null){
+			FragmentTransaction ft = getFragmentManager().beginTransaction();
+			ft.add(R.id.container, fragment);
+			ft.commit();
+		}
 	}
 }
