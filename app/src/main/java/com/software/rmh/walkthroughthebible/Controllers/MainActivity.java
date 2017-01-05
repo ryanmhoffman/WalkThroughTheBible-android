@@ -1,12 +1,11 @@
 package com.software.rmh.walkthroughthebible.Controllers;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.software.rmh.walkthroughthebible.R;
@@ -21,14 +20,14 @@ public class MainActivity extends AppCompatActivity {
 	private static String BIBLES_FRAGMENT_KEY = "BiblesList";
 	private static String ABOUT_FRAGMENT_KEY = "About";
 
+	FragmentManager fm = getFragmentManager();
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
 		if(savedInstanceState == null){
-			Log.d("frag", "test");
-			FragmentTransaction ft = getFragmentManager().beginTransaction();
-			ft.add(BookListFragment.newInstance(), BOOKS_FRAGMENT_KEY).commit();
+			fm.beginTransaction().add(R.id.container, BookListFragment.newInstance(), BOOKS_FRAGMENT_KEY).commit();
 		}
 
 		initViews();
@@ -69,9 +68,7 @@ public class MainActivity extends AppCompatActivity {
 		}
 
 		if(fragment != null){
-			FragmentTransaction ft = getFragmentManager().beginTransaction();
-			ft.add(R.id.container, fragment);
-			ft.commit();
+
 		}
 	}
 }
