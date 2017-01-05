@@ -22,6 +22,8 @@
         android:layout_width="match_parent"
         android:layout_gravity="bottom"
         android:background="@color/nav_bar_background"
+        app:elevation="8dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:menu="@menu/navigation_bar_items"/>
 
 </android.support.design.widget.CoordinatorLayout>

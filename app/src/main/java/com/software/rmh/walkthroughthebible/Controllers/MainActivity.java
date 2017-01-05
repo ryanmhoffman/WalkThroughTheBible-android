@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
 	// Keys to identify each Fragment in the stack.
 	private static String BOOKS_FRAGMENT_KEY = "BookList";
-	private static String GLOSSARY_FRAGENT_KEY = "Glossary";
+	private static String GLOSSARY_FRAGMENT_KEY = "Glossary";
 	private static String TOUR_FRAGMENT_KEY = "VirtualTour";
 	private static String BIBLES_FRAGMENT_KEY = "BiblesList";
 	private static String ABOUT_FRAGMENT_KEY = "About";
@@ -33,18 +33,10 @@ public class MainActivity extends AppCompatActivity {
 		if(savedInstanceState == null){
 			fm.beginTransaction().add(R.id.container, BookListFragment.newInstance(), BOOKS_FRAGMENT_KEY).commit();
 		}
-
 		initViews();
 
-	}
 
-	@Override
-	public void onBackPressed() {
-		if(fm.getBackStackEntryCount() > 0){
-			fm.popBackStack();
-		} else {
-			super.onBackPressed();
-		}
+
 	}
 
 	private void initViews(){
@@ -64,32 +56,26 @@ public class MainActivity extends AppCompatActivity {
 			case R.id.books:
 				fm.beginTransaction()
 						.replace(R.id.container, BookListFragment.newInstance(), BOOKS_FRAGMENT_KEY)
-						.addToBackStack(BOOKS_FRAGMENT_KEY)
 						.commit();
-				bottomNavigationView.getMenu();
 				break;
 			case R.id.glossary:
 				fm.beginTransaction()
-						.replace(R.id.container, GlossaryFragment.newInstance(), GLOSSARY_FRAGENT_KEY)
-						.addToBackStack(GLOSSARY_FRAGENT_KEY)
+						.replace(R.id.container, GlossaryFragment.newInstance(), GLOSSARY_FRAGMENT_KEY)
 						.commit();
 				break;
 			case R.id.tour:
 				fm.beginTransaction()
 						.replace(R.id.container, VirtualTourFragment.newInstance(), TOUR_FRAGMENT_KEY)
-						.addToBackStack(TOUR_FRAGMENT_KEY)
 						.commit();
 				break;
 			case R.id.bibles:
 				fm.beginTransaction()
 						.replace(R.id.container, BiblesFragment.newInstance(), BIBLES_FRAGMENT_KEY)
-						.addToBackStack(BIBLES_FRAGMENT_KEY)
 						.commit();
 				break;
 			case R.id.about:
 				fm.beginTransaction()
 						.replace(R.id.container, AboutFragment.newInstance(), ABOUT_FRAGMENT_KEY)
-						.addToBackStack(ABOUT_FRAGMENT_KEY)
 						.commit();
 				break;
 		}

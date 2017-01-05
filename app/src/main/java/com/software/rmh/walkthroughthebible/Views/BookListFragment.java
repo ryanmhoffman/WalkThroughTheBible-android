@@ -23,6 +23,7 @@ import java.util.List;
 public class BookListFragment extends Fragment {
 
 	private List<String> books;
+	private RecyclerView recyclerView;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -53,7 +54,7 @@ public class BookListFragment extends Fragment {
 
 		// Set the adapter
 		if(view instanceof RecyclerView) {
-			RecyclerView recyclerView = (RecyclerView) view;
+			recyclerView = (RecyclerView) view;
 			recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 			recyclerView.setAdapter(new CustomBookListAdapter(books));
 			DividerItemDecoration divider = new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL);
@@ -61,7 +62,6 @@ public class BookListFragment extends Fragment {
 		}
 		return view;
 	}
-
 
 	@Override
 	public void onAttach(Context context) {
