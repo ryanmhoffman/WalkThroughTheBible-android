@@ -3,6 +3,7 @@ package com.software.rmh.walkthroughthebible.Views;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -55,6 +56,8 @@ public class BookListFragment extends Fragment {
 			RecyclerView recyclerView = (RecyclerView) view;
 			recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 			recyclerView.setAdapter(new CustomBookListAdapter(books));
+			DividerItemDecoration divider = new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL);
+			recyclerView.addItemDecoration(divider);
 		}
 		return view;
 	}

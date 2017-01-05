@@ -1,6 +1,5 @@
 package com.software.rmh.walkthroughthebible.Controllers;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,7 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.software.rmh.walkthroughthebible.R;
+import com.software.rmh.walkthroughthebible.Views.AboutFragment;
+import com.software.rmh.walkthroughthebible.Views.BiblesFragment;
 import com.software.rmh.walkthroughthebible.Views.BookListFragment;
+import com.software.rmh.walkthroughthebible.Views.GlossaryFragment;
+import com.software.rmh.walkthroughthebible.Views.VirtualTourFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 	private static String ABOUT_FRAGMENT_KEY = "About";
 
 	FragmentManager fm = getFragmentManager();
+	BottomNavigationView bottomNavigationView;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,8 +38,17 @@ public class MainActivity extends AppCompatActivity {
 
 	}
 
+	@Override
+	public void onBackPressed() {
+		if(fm.getBackStackEntryCount() > 0){
+			fm.popBackStack();
+		} else {
+			super.onBackPressed();
+		}
+	}
+
 	private void initViews(){
-		BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationBar);
+		bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationBar);
 		bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 			@Override
 			public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -46,29 +59,40 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void changeFragment(MenuItem item){
-		Fragment fragment = null;
 
 		switch(item.getItemId()){
 			case R.id.books:
-				// Books Fragment
-				fragment = BookListFragment.newInstance();
+				fm.beginTransaction()
+						.replace(R.id.container, BookListFragment.newInstance(), BOOKS_FRAGMENT_KEY)
+						.addToBackStack(BOOKS_FRAGMENT_KEY)
+						.commit();
+				bottomNavigationView.getMenu();
 				break;
 			case R.id.glossary:
-				// Glossary Fragment
+				fm.beginTransaction()
+						.replace(R.id.container, GlossaryFragment.newInstance(), GLOSSARY_FRAGENT_KEY)
+						.addToBackStack(GLOSSARY_FRAGENT_KEY)
+						.commit();
 				break;
 			case R.id.tour:
-				// Tour Fragment
+				fm.beginTransaction()
+						.replace(R.id.container, VirtualTourFragment.newInstance(), TOUR_FRAGMENT_KEY)
+						.addToBackStack(TOUR_FRAGMENT_KEY)
+						.commit();
 				break;
 			case R.id.bibles:
-				// Bibles Fragment
+				fm.beginTransaction()
+						.replace(R.id.container, BiblesFragment.newInstance(), BIBLES_FRAGMENT_KEY)
+						.addToBackStack(BIBLES_FRAGMENT_KEY)
+						.commit();
 				break;
 			case R.id.about:
-				// About Fragment
+				fm.beginTransaction()
+						.replace(R.id.container, AboutFragment.newInstance(), ABOUT_FRAGMENT_KEY)
+						.addToBackStack(ABOUT_FRAGMENT_KEY)
+						.commit();
 				break;
 		}
 
-		if(fragment != null){
-
-		}
 	}
 }
