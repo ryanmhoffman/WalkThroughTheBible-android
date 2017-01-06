@@ -24,6 +24,12 @@ public class BookListFragment extends Fragment {
 
 	private List<String> books;
 	private RecyclerView recyclerView;
+	private BookListFragmentListener listener;
+
+	// Directional int Keys
+	public static final int SCROLL_UP = 0;
+	public static final int SCROLL_DOWN = 1;
+	public static final int NO_SCROLL = 2;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -45,6 +51,10 @@ public class BookListFragment extends Fragment {
 		String[] booksArray = getResources().getStringArray(R.array.all_books);
 		int len = booksArray.length;
 		books.addAll(Arrays.asList(booksArray).subList(0, len));
+
+		if(listener == null){
+			listener = (BookListFragmentListener) getActivity();
+		}
 	}
 
 	@Override
@@ -59,6 +69,33 @@ public class BookListFragment extends Fragment {
 			recyclerView.setAdapter(new CustomBookListAdapter(books));
 			DividerItemDecoration divider = new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL);
 			recyclerView.addItemDecoration(divider);
+
+			recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+				@Override
+				public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+					super.onScrolled(recyclerView, dx, dy);
+					if(dy > 0){
+						// Scrolling down
+						listener.onScroll(SCROLL_DOWN);
+					} else if(dy < 0){
+						// Scrolling up
+						listener.onScroll(SCROLL_UP);
+					} else {
+						listener.onScroll(NO_SCROLL);
+					}
+				}
+
+				@Override
+				public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+					super.onScrollStateChanged(recyclerView, newState);
+					switch(newState){
+						case RecyclerView.SCROLL_STATE_IDLE:
+							break;
+						case RecyclerView.SCROLL_STATE_DRAGGING:
+							break;
+					}
+				}
+			});
 		}
 		return view;
 	}
@@ -74,5 +111,8 @@ public class BookListFragment extends Fragment {
 		super.onDetach();
 	}
 
+	public interface BookListFragmentListener {
+		void onScroll(int direction);
+	}
 
 }

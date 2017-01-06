@@ -1,12 +1,10 @@
 package com.software.rmh.walkthroughthebible.Adapters;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.software.rmh.walkthroughthebible.R;
 
@@ -31,17 +29,9 @@ public class CustomBookListAdapter extends RecyclerView.Adapter<CustomBookListAd
 	}
 
 	@Override
-	public void onBindViewHolder(final ViewHolder holder, int position) {
+	public void onBindViewHolder(ViewHolder holder, int position) {
 
-		Log.d("ArrayList", books.get(position));
 		holder.textView.setText(books.get(position));
-
-		holder.view.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(v.getContext(), "Clicked " + holder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
-			}
-		});
 	}
 
 	@Override
@@ -49,15 +39,18 @@ public class CustomBookListAdapter extends RecyclerView.Adapter<CustomBookListAd
 		return books.size();
 	}
 
-	public class ViewHolder extends RecyclerView.ViewHolder {
+	public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 		private final TextView textView;
-		private final View view;
 
 		private ViewHolder(View view) {
 			super(view);
-			this.view = view;
+			view.setOnClickListener(this);
 			textView = (TextView) view.findViewById(R.id.content);
 		}
 
+		@Override
+		public void onClick(View view) {
+			// Intent to start new Activity to read the select book with the map.
+		}
 	}
 }

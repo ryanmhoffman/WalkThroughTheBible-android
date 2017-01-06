@@ -31,6 +31,6 @@ public class SplashScreen extends AppCompatActivity {
 				finish();
 			}
 		};
-		new Timer().schedule(timerTask, 3000);
+		new Timer().schedule(timerTask, 500);
 	}
 }

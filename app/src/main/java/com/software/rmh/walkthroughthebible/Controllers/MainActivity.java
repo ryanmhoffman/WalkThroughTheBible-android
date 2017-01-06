@@ -14,7 +14,7 @@ import com.software.rmh.walkthroughthebible.Views.BookListFragment;
 import com.software.rmh.walkthroughthebible.Views.GlossaryFragment;
 import com.software.rmh.walkthroughthebible.Views.VirtualTourFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BookListFragment.BookListFragmentListener {
 
 	// Keys to identify each Fragment in the stack.
 	private static String BOOKS_FRAGMENT_KEY = "BookList";
@@ -79,6 +79,31 @@ public class MainActivity extends AppCompatActivity {
 						.commit();
 				break;
 		}
+
+	}
+
+	@Override
+	public void onScroll(int direction) {
+
+		switch(direction){
+			case BookListFragment.SCROLL_DOWN:
+				hideBottomNavigationView();
+				break;
+			case BookListFragment.SCROLL_UP:
+				showBottomNavigationView();
+				break;
+			case BookListFragment.NO_SCROLL:
+				// Do nothing
+			default:
+				break;
+		}
+	}
+
+	private void hideBottomNavigationView(){
+
+	}
+
+	private void showBottomNavigationView(){
 
 	}
 }
