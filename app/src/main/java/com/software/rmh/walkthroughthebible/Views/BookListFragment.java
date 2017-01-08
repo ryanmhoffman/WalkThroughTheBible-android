@@ -26,6 +26,8 @@ public class BookListFragment extends Fragment {
 	private RecyclerView recyclerView;
 	private BookListFragmentListener listener;
 
+	private boolean scrollUp = true;
+
 	// Directional int Keys
 	public static final int SCROLL_UP = 0;
 	public static final int SCROLL_DOWN = 1;
@@ -74,25 +76,30 @@ public class BookListFragment extends Fragment {
 				@Override
 				public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 					super.onScrolled(recyclerView, dx, dy);
+
 					if(dy > 0){
-						// Scrolling down
-						listener.onScroll(SCROLL_DOWN);
-					} else if(dy < 0){
 						// Scrolling up
-						listener.onScroll(SCROLL_UP);
-					} else {
-						listener.onScroll(NO_SCROLL);
+						scrollUp = true;
+					} else if(dy < 0){
+						// Scrolling down
+						scrollUp = false;
 					}
 				}
 
 				@Override
 				public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
 					super.onScrollStateChanged(recyclerView, newState);
+
 					switch(newState){
-						case RecyclerView.SCROLL_STATE_IDLE:
-							break;
 						case RecyclerView.SCROLL_STATE_DRAGGING:
+							if(scrollUp){
+								listener.onScroll(SCROLL_UP);
+							} else {
+								listener.onScroll(SCROLL_DOWN);
+							}
 							break;
+						case RecyclerView.SCROLL_STATE_IDLE:
+							listener.onScroll(NO_SCROLL);
 					}
 				}
 			});
@@ -103,7 +110,6 @@ public class BookListFragment extends Fragment {
 	@Override
 	public void onAttach(Context context) {
 		super.onAttach(context);
-
 	}
 
 	@Override
@@ -113,6 +119,30 @@ public class BookListFragment extends Fragment {
 
 	public interface BookListFragmentListener {
 		void onScroll(int direction);
+	}
+
+	public class CustomScrollListener extends RecyclerView.OnScrollListener {
+
+		public CustomScrollListener(){
+			// Empty Constructor
+		}
+
+		public void onScrolled(RecyclerView recyclerView, int dx, int dy){
+			if(dy > 0){
+				// Scrolling down
+				listener.onScroll(SCROLL_DOWN);
+			} else if(dy < 0){
+				// Scrolling up
+				listener.onScroll(SCROLL_UP);
+			} else {
+				listener.onScroll(NO_SCROLL);
+			}
+		}
+
+		public void onScrollStateChanged(RecyclerView recyclerView, int newState){
+
+		}
+
 	}
 
 }

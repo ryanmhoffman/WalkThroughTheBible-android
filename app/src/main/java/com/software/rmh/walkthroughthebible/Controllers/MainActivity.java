@@ -1,11 +1,14 @@
 package com.software.rmh.walkthroughthebible.Controllers;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.software.rmh.walkthroughthebible.R;
 import com.software.rmh.walkthroughthebible.Views.AboutFragment;
@@ -100,10 +103,22 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 	}
 
 	private void hideBottomNavigationView(){
-
+		bottomNavigationView.animate().translationY(0).setListener(new AnimatorListenerAdapter() {
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				super.onAnimationEnd(animation);
+				bottomNavigationView.setVisibility(View.GONE);
+			}
+		});
 	}
 
 	private void showBottomNavigationView(){
-
+		bottomNavigationView.animate().translationY(bottomNavigationView.getHeight()).setListener(new AnimatorListenerAdapter() {
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				super.onAnimationEnd(animation);
+				bottomNavigationView.setVisibility(View.VISIBLE);
+			}
+		});
 	}
 }
