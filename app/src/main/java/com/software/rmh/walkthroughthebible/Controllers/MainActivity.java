@@ -1,15 +1,12 @@
 package com.software.rmh.walkthroughthebible.Controllers;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.view.View;
 
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.software.rmh.walkthroughthebible.R;
 import com.software.rmh.walkthroughthebible.Views.AboutFragment;
 import com.software.rmh.walkthroughthebible.Views.BiblesFragment;
@@ -27,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 	private static String ABOUT_FRAGMENT_KEY = "About";
 
 	FragmentManager fm = getFragmentManager();
-	BottomNavigationView bottomNavigationView;
+	AHBottomNavigation bottomNavigation;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,48 +35,64 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 		}
 		initViews();
 
-
-
 	}
 
 	private void initViews(){
-		bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationBar);
-		bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+		bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
+		AHBottomNavigationItem books = new AHBottomNavigationItem(getString(R.string.books), ContextCompat.getDrawable(this, R.drawable.icon_book));
+		AHBottomNavigationItem glossary = new AHBottomNavigationItem(getString(R.string.glossary), ContextCompat.getDrawable(this, R.drawable.icon_glossary));
+		AHBottomNavigationItem tour = new AHBottomNavigationItem(getString(R.string.tour), ContextCompat.getDrawable(this, R.drawable.icon_tour));
+		AHBottomNavigationItem bibles = new AHBottomNavigationItem(getString(R.string.bibles), ContextCompat.getDrawable(this, R.drawable.icon_bible));
+		AHBottomNavigationItem about = new AHBottomNavigationItem(getString(R.string.about), ContextCompat.getDrawable(this, R.drawable.icon_about));
+
+		bottomNavigation.addItem(books);
+		bottomNavigation.addItem(glossary);
+		bottomNavigation.addItem(tour);
+		bottomNavigation.addItem(bibles);
+		bottomNavigation.addItem(about);
+
+		bottomNavigation.setBehaviorTranslationEnabled(true);
+		bottomNavigation.setDefaultBackgroundColor(ContextCompat.getColor(this, R.color.nav_bar_background));
+
+		bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
 			@Override
-			public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-				changeFragment(item);
+			public boolean onTabSelected(int position, boolean wasSelected) {
+				changeFragment(position);
 				return true;
 			}
 		});
 	}
 
-	private void changeFragment(MenuItem item){
+	private void changeFragment(int position){
 
-		switch(item.getItemId()){
-			case R.id.books:
+		switch(position){
+			case 0:
 				fm.beginTransaction()
 						.replace(R.id.container, BookListFragment.newInstance(), BOOKS_FRAGMENT_KEY)
 						.commit();
 				break;
-			case R.id.glossary:
+			case 1:
 				fm.beginTransaction()
 						.replace(R.id.container, GlossaryFragment.newInstance(), GLOSSARY_FRAGMENT_KEY)
 						.commit();
 				break;
-			case R.id.tour:
+			case 2:
 				fm.beginTransaction()
 						.replace(R.id.container, VirtualTourFragment.newInstance(), TOUR_FRAGMENT_KEY)
 						.commit();
 				break;
-			case R.id.bibles:
+			case 3:
 				fm.beginTransaction()
 						.replace(R.id.container, BiblesFragment.newInstance(), BIBLES_FRAGMENT_KEY)
 						.commit();
 				break;
-			case R.id.about:
+			case 4:
 				fm.beginTransaction()
 						.replace(R.id.container, AboutFragment.newInstance(), ABOUT_FRAGMENT_KEY)
 						.commit();
+				break;
+			default:
 				break;
 		}
 
@@ -88,37 +101,6 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 	@Override
 	public void onScroll(int direction) {
 
-		switch(direction){
-			case BookListFragment.SCROLL_DOWN:
-				hideBottomNavigationView();
-				break;
-			case BookListFragment.SCROLL_UP:
-				showBottomNavigationView();
-				break;
-			case BookListFragment.NO_SCROLL:
-				// Do nothing
-			default:
-				break;
-		}
 	}
 
-	private void hideBottomNavigationView(){
-		bottomNavigationView.animate().translationY(0).setListener(new AnimatorListenerAdapter() {
-			@Override
-			public void onAnimationEnd(Animator animation) {
-				super.onAnimationEnd(animation);
-				bottomNavigationView.setVisibility(View.GONE);
-			}
-		});
-	}
-
-	private void showBottomNavigationView(){
-		bottomNavigationView.animate().translationY(bottomNavigationView.getHeight()).setListener(new AnimatorListenerAdapter() {
-			@Override
-			public void onAnimationEnd(Animator animation) {
-				super.onAnimationEnd(animation);
-				bottomNavigationView.setVisibility(View.VISIBLE);
-			}
-		});
-	}
 }

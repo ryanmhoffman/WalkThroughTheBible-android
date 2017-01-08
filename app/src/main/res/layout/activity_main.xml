@@ -14,15 +14,10 @@
 
     </FrameLayout>
 
-    <android.support.design.widget.BottomNavigationView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/bottomNavigationBar"
-        android:layout_height="56dp"
+    <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_gravity="bottom"
-        android:background="@color/nav_bar_background"
-        app:elevation="8dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:menu="@menu/navigation_bar_items"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" />
 
 </android.support.design.widget.CoordinatorLayout>
