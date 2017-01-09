@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 
 		if(savedInstanceState == null){
 			fm.beginTransaction().add(R.id.container, BookListFragment.newInstance(), BOOKS_FRAGMENT_KEY).commit();
+			if(getSupportActionBar() != null) getSupportActionBar().setTitle(R.string.books);
 		}
 		initViews();
 
@@ -71,26 +72,31 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 				fm.beginTransaction()
 						.replace(R.id.container, BookListFragment.newInstance(), BOOKS_FRAGMENT_KEY)
 						.commit();
+				if(getSupportActionBar() != null) getSupportActionBar().setTitle(R.string.books);
 				break;
 			case 1:
 				fm.beginTransaction()
 						.replace(R.id.container, GlossaryFragment.newInstance(), GLOSSARY_FRAGMENT_KEY)
 						.commit();
+				if(getSupportActionBar() != null) getSupportActionBar().setTitle(R.string.glossary);
 				break;
 			case 2:
 				fm.beginTransaction()
 						.replace(R.id.container, VirtualTourFragment.newInstance(), TOUR_FRAGMENT_KEY)
 						.commit();
+				if(getSupportActionBar() != null) getSupportActionBar().setTitle(R.string.tour);
 				break;
 			case 3:
 				fm.beginTransaction()
 						.replace(R.id.container, BiblesFragment.newInstance(), BIBLES_FRAGMENT_KEY)
 						.commit();
+				if(getSupportActionBar() != null) getSupportActionBar().setTitle(R.string.bibles);
 				break;
 			case 4:
 				fm.beginTransaction()
 						.replace(R.id.container, AboutFragment.newInstance(), ABOUT_FRAGMENT_KEY)
 						.commit();
+				if(getSupportActionBar() != null) getSupportActionBar().setTitle(R.string.about);
 				break;
 			default:
 				break;
