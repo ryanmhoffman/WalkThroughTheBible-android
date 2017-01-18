@@ -1,5 +1,6 @@
 package com.software.rmh.walkthroughthebible.Controllers;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -69,39 +70,29 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 
 		switch(position){
 			case 0:
-				fm.beginTransaction()
-						.replace(R.id.container, BookListFragment.newInstance(), BOOKS_FRAGMENT_KEY)
-						.commit();
-				if(getSupportActionBar() != null) getSupportActionBar().setTitle(R.string.books);
+				replaceCurrentFragment(BOOKS_FRAGMENT_KEY, BookListFragment.newInstance(), R.string.books);
 				break;
 			case 1:
-				fm.beginTransaction()
-						.replace(R.id.container, GlossaryFragment.newInstance(), GLOSSARY_FRAGMENT_KEY)
-						.commit();
-				if(getSupportActionBar() != null) getSupportActionBar().setTitle(R.string.glossary);
+				replaceCurrentFragment(GLOSSARY_FRAGMENT_KEY, GlossaryFragment.newInstance(), R.string.glossary);
 				break;
 			case 2:
-				fm.beginTransaction()
-						.replace(R.id.container, VirtualTourFragment.newInstance(), TOUR_FRAGMENT_KEY)
-						.commit();
-				if(getSupportActionBar() != null) getSupportActionBar().setTitle(R.string.tour);
+				replaceCurrentFragment(TOUR_FRAGMENT_KEY, VirtualTourFragment.newInstance(), R.string.tour);
 				break;
 			case 3:
-				fm.beginTransaction()
-						.replace(R.id.container, BiblesFragment.newInstance(), BIBLES_FRAGMENT_KEY)
-						.commit();
-				if(getSupportActionBar() != null) getSupportActionBar().setTitle(R.string.bibles);
+				replaceCurrentFragment(BIBLES_FRAGMENT_KEY, BiblesFragment.newInstance(), R.string.bibles);
 				break;
 			case 4:
-				fm.beginTransaction()
-						.replace(R.id.container, AboutFragment.newInstance(), ABOUT_FRAGMENT_KEY)
-						.commit();
-				if(getSupportActionBar() != null) getSupportActionBar().setTitle(R.string.about);
+				replaceCurrentFragment(ABOUT_FRAGMENT_KEY, AboutFragment.newInstance(), R.string.about);
 				break;
 			default:
 				break;
 		}
 
+	}
+
+	private void replaceCurrentFragment(String key, Fragment fragment, int titleResource){
+		fm.beginTransaction().replace(R.id.container, fragment, key).commit();
+		if(getSupportActionBar() != null) getSupportActionBar().setTitle(titleResource);
 	}
 
 	@Override
