@@ -1,8 +1,8 @@
 package com.software.rmh.walkthroughthebible.Views;
 
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +15,8 @@ import com.software.rmh.walkthroughthebible.R;
  * create an instance of this fragment.
  */
 public class AboutFragment extends Fragment {
+
+	private StringBuilder about = new StringBuilder();
 
 	public AboutFragment() {
 		// Required empty public constructor
@@ -31,6 +33,7 @@ public class AboutFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 
 	}
 
