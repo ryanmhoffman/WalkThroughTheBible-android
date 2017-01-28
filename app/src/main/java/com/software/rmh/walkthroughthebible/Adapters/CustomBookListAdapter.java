@@ -1,6 +1,7 @@
 package com.software.rmh.walkthroughthebible.Adapters;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,16 +11,16 @@ import android.widget.TextView;
 import com.software.rmh.walkthroughthebible.Controllers.BookActivity;
 import com.software.rmh.walkthroughthebible.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * {@link RecyclerView.Adapter} that can display a list of Strings.
  */
 public class CustomBookListAdapter extends RecyclerView.Adapter<CustomBookListAdapter.ViewHolder> {
 
-	private final List<String> books;
+	private final ArrayList<String> books;
 
-	public CustomBookListAdapter(List<String> items) {
+	public CustomBookListAdapter(ArrayList<String> items) {
 		books = items;
 	}
 
@@ -53,6 +54,10 @@ public class CustomBookListAdapter extends RecyclerView.Adapter<CustomBookListAd
 		@Override
 		public void onClick(View view) {
 			Intent intent = new Intent(view.getContext(), BookActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putStringArrayList("ARRAYLIST", books);
+			bundle.putInt("BOOK_POSITION", getAdapterPosition());
+			intent.putExtras(bundle);
 			view.getContext().startActivity(intent);
 		}
 	}

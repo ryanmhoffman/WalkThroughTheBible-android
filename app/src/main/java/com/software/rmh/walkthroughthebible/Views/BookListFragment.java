@@ -15,14 +15,13 @@ import com.software.rmh.walkthroughthebible.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * A fragment representing a list of books in String format.
  */
 public class BookListFragment extends Fragment {
 
-	private List<String> books;
+	private ArrayList<String> books;
 	private RecyclerView recyclerView;
 	private BookListFragmentListener listener;
 
