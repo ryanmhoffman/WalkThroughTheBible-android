@@ -1,11 +1,13 @@
 package com.software.rmh.walkthroughthebible.Adapters;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.software.rmh.walkthroughthebible.Controllers.BookActivity;
 import com.software.rmh.walkthroughthebible.R;
 
 import java.util.List;
@@ -50,7 +52,8 @@ public class CustomBookListAdapter extends RecyclerView.Adapter<CustomBookListAd
 
 		@Override
 		public void onClick(View view) {
-			// Intent to start new Activity to read the select book with the map.
+			Intent intent = new Intent(view.getContext(), BookActivity.class);
+			view.getContext().startActivity(intent);
 		}
 	}
 }
