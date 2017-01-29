@@ -47,6 +47,7 @@ public class BookActivity extends AppCompatActivity {
 				String line;
 				while((line = reader.readLine()) != null){
 					// We can assume that the file is only one line.
+					// ^^ No longer correct, the file is more than one line. Each chapter is one line.
 					text = line;
 				}
 			} catch(IOException e){
