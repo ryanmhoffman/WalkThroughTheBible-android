@@ -1,5 +1,6 @@
 package com.software.rmh.walkthroughthebible.Controllers;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -32,13 +33,13 @@ public class BookActivity extends AppCompatActivity {
 		if(getSupportActionBar() != null) getSupportActionBar().setTitle(books.get(position));
 
 		bookText = (TextView) findViewById(R.id.bookText);
-		setBookText(books.get(position));
+
+		new BookAsyncTask().execute(books.get(position));
 	}
 
-	// TODO: refactor this as it is currently incredibly inefficient with memory
-	// Possibly run this on a background thread, but it is so slow it causes a 1+ second lag
-	// Perhaps break it up into smaller files that load in chunks, one after the next
-	private void setBookText(String book){
+	private String setBookTextString(String book){
+		String text = null;
+
 		if(bookText != null){
 			// Use try with resources so the BufferedReader gets closed automatically when exiting.
 			// This saves writing the code to manually close it in a finally block.
@@ -46,11 +47,44 @@ public class BookActivity extends AppCompatActivity {
 				String line;
 				while((line = reader.readLine()) != null){
 					// We can assume that the file is only one line.
-					bookText.setText(line);
+					text = line;
 				}
 			} catch(IOException e){
 				e.printStackTrace();
 			}
 		}
+		// Returns the text of the book or null if unable to get the text.
+		// The possibility of null return is on purpose.
+		return text;
 	}
+
+	/**
+	 * AsyncTask is required in order to not lag the main thread when loading the .txt file. Some of the books are very long
+	 * and loading takes up to 2 or 3 seconds. This allows the view to load so the app doesn't freeze, and when the text
+	 * finishes loading into memory it gets displayed inside the TextView.
+	 *
+	 * There should be a circular progress bar while the text is loading that cancels once loaded. This has not been implemented yet.
+	 */
+	private class BookAsyncTask extends AsyncTask<String, Long, String> {
+
+		// On the main thread, before the task starts
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		// On a separate thread in the background
+		@Override
+		protected String doInBackground(String... params) {
+			return setBookTextString(params[0]);
+		}
+
+		// On the main thread, after background thread is finished
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			bookText.setText(result);
+		}
+	}
+
 }
