@@ -32,9 +32,9 @@ public class BookActivity extends AppCompatActivity {
 		// Set the ActionBar title to the name of the book.
 		if(getSupportActionBar() != null) getSupportActionBar().setTitle(books.get(position));
 
-		bookText = (TextView) findViewById(R.id.bookText);
-
 		new BookAsyncTask().execute(books.get(position));
+
+		bookText = (TextView) findViewById(R.id.bookText);
 	}
 
 	private String setBookTextString(String book){
@@ -62,8 +62,6 @@ public class BookActivity extends AppCompatActivity {
 	 * AsyncTask is required in order to not lag the main thread when loading the .txt file. Some of the books are very long
 	 * and loading takes up to 2 or 3 seconds. This allows the view to load so the app doesn't freeze, and when the text
 	 * finishes loading into memory it gets displayed inside the TextView.
-	 *
-	 * There should be a circular progress bar while the text is loading that cancels once loaded. This has not been implemented yet.
 	 */
 	private class BookAsyncTask extends AsyncTask<String, Long, String> {
 
@@ -83,6 +81,9 @@ public class BookActivity extends AppCompatActivity {
 		@Override
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
+			// There is still a huge lag at this method. I need to break the books down by chapter, and load only one at a time.
+			// The progress bar actually was working, but it would only be displayed for a fraction of a second.
+			// The lag isn't from loading the text from the file, it's from loading the String into the TextView.
 			bookText.setText(result);
 		}
 	}
