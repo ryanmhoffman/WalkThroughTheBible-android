@@ -4,6 +4,7 @@ package com.software.rmh.walkthroughthebible.Views;
 import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,11 @@ import java.util.ArrayList;
  */
 public class ChapterFragment extends Fragment {
 
+	// Views
 	private TextView bookText;
+	private FloatingActionButton previous;
+	private FloatingActionButton next;
+
 	private ArrayList<String> books = new ArrayList<>();
 	private int position;
 	private String book;
@@ -46,6 +51,9 @@ public class ChapterFragment extends Fragment {
 
 			book = books.get(position);
 		}
+
+		next = (FloatingActionButton) root.findViewById(R.id.nextChapter);
+		previous = (FloatingActionButton) root.findViewById(R.id.previousChapter);
 
 		bookText = (TextView) root.findViewById(R.id.bookText);
 		new BookAsyncTask().execute(book);
