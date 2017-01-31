@@ -25,8 +25,10 @@ public class ChapterFragment extends Fragment {
 	private ArrayList<String> books = new ArrayList<>();
 	private int position;
 	private String book;
-	private int chapter;
 	private Bundle bundle;
+
+	// Count lines in the .txt file to keep track of which chapter the user is on.
+	private int counter = 0;
 
 	public ChapterFragment() {
 		// Required empty public constructor
@@ -59,31 +61,59 @@ public class ChapterFragment extends Fragment {
 	private String getBookText(String book){
 		String text = null;
 
-		// Needs updated. It works for displaying the first chapter, but anything after is not read and can't be displayed.
-		if(bookText != null){
-			// Use try with resources so the BufferedReader gets closed automatically when exiting.
-			try(LineNumberReader reader = new LineNumberReader(new InputStreamReader(this.getActivity().getAssets().open("KingJamesVersion/" + book + ".txt")))){
-				String line;
-				if((line = reader.readLine()) != null){
-					text = line;
+		if(counter == 0){
+			counter++;
+
+			if(bookText != null){
+				// Use try with resources so the BufferedReader gets closed automatically when exiting.
+				try(LineNumberReader reader = new LineNumberReader(new InputStreamReader(this.getActivity().getAssets().open("KingJamesVersion/" + book + ".txt")))){
+					String line;
+					// Typical Java null check :/ and assign the String
+					if((line = reader.readLine()) != null) text = line;
+				} catch(IOException e){
+					e.printStackTrace();
 				}
-			} catch(IOException e){
-				e.printStackTrace();
+			}
+
+		} else {
+			if(bookText != null){
+				// Use try with resources so the BufferedReader gets closed automatically when exiting.
+				try(LineNumberReader reader = new LineNumberReader(new InputStreamReader(this.getActivity().getAssets().open("KingJamesVersion/" + book + ".txt")))){
+					for(int i = 0; i < counter; i++) {
+						// Read the line(s) only to get past them
+						if(reader.readLine() != null) reader.readLine();
+					}
+					String line;
+					// Null check and String value assignment
+					if((line = reader.readLine()) != null) text = line;
+				} catch(IOException e){
+					e.printStackTrace();
+				}
+				counter++;
 			}
 		}
+
 		// Returns the text of the book or null if unable to get the text.
 		// The possibility of null return is on purpose.
 		return text;
 	}
 
+	// TODO: implement this method to move forward one chapter on button click
+	private String getNextChapter(){
+		return null;
+	}
+
+	// TODO: implement this method to move backward one chapter on button click
+	private String getPreviousChapter(){
+		return null;
+	}
+
 	/**
-	 * AsyncTask is required in order to not lag the main thread when loading the .txt file. Some of the books are very long
-	 * and loading takes up to 2 or 3 seconds. This allows the view to load so the app doesn't freeze, and when the text
-	 * finishes loading into memory it gets displayed inside the TextView.
-	 *
-	 * UPDATE: Testing is needed on getBookText() after all the changes. This AsyncTask may not be necessary any more since
-	 * I'm only loading one chapter at a time instead of the entire book. That means there may not be a lag anymore.
+	 * AsyncTask is used to increase performance for loading each chapter. The file is opened and read from a background thread
+	 * instead of locking up the main thread. Some chapters are very long and take a couple seconds to load, causing noticeable
+	 * lag for the user.
 	 */
+	// TODO: test to see if performance is actually improved or if this is just a waste of code after the updates
 	private class BookAsyncTask extends AsyncTask<String, Long, String> {
 
 		// On the main thread, before the task starts
