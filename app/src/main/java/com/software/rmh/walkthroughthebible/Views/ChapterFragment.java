@@ -59,6 +59,7 @@ public class ChapterFragment extends Fragment {
 	private String getBookText(String book){
 		String text = null;
 
+		// Needs updated. It works for displaying the first chapter, but anything after is not read and can't be displayed.
 		if(bookText != null){
 			// Use try with resources so the BufferedReader gets closed automatically when exiting.
 			try(LineNumberReader reader = new LineNumberReader(new InputStreamReader(this.getActivity().getAssets().open("KingJamesVersion/" + book + ".txt")))){
@@ -79,6 +80,9 @@ public class ChapterFragment extends Fragment {
 	 * AsyncTask is required in order to not lag the main thread when loading the .txt file. Some of the books are very long
 	 * and loading takes up to 2 or 3 seconds. This allows the view to load so the app doesn't freeze, and when the text
 	 * finishes loading into memory it gets displayed inside the TextView.
+	 *
+	 * UPDATE: Testing is needed on getBookText() after all the changes. This AsyncTask may not be necessary any more since
+	 * I'm only loading one chapter at a time instead of the entire book. That means there may not be a lag anymore.
 	 */
 	private class BookAsyncTask extends AsyncTask<String, Long, String> {
 
