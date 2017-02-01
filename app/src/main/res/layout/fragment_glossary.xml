@@ -6,8 +6,10 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:gravity="center"
+        android:textSize="22sp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello Glossary Fragment"/>
+        android:text="Glossary coming soon! Stay tuned for future updates!"/>
 
 </FrameLayout>
