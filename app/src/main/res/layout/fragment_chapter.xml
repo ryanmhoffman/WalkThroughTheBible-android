@@ -25,7 +25,6 @@
                 android:layout_marginTop="8dp"
                 android:paddingBottom="16dp"/>
 
-
         </RelativeLayout>
 
     </ScrollView>
@@ -62,6 +61,7 @@
             android:src="@drawable/ic_next_arrow"
             app:elevation="4dp"
             app:fabSize="mini"/>
+
     </LinearLayout>
 
 </RelativeLayout>

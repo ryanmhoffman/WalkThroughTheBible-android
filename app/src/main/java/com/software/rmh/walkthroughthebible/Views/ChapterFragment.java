@@ -33,7 +33,7 @@ public class ChapterFragment extends Fragment {
 	private Bundle bundle;
 
 	// Count lines in the .txt file to keep track of which chapter the user is on.
-	private int counter = 0;
+	private int counter = 1;
 
 	public ChapterFragment() {
 		// Required empty public constructor
@@ -54,6 +54,7 @@ public class ChapterFragment extends Fragment {
 
 		next = (FloatingActionButton) root.findViewById(R.id.nextChapter);
 		previous = (FloatingActionButton) root.findViewById(R.id.previousChapter);
+		setFABListeners();
 
 		bookText = (TextView) root.findViewById(R.id.bookText);
 		new BookAsyncTask().execute(book);
@@ -69,8 +70,7 @@ public class ChapterFragment extends Fragment {
 	private String getBookText(String book){
 		String text = null;
 
-		if(counter == 0){
-			counter++;
+		if(counter == 1){
 
 			if(bookText != null){
 				// Use try with resources so the BufferedReader gets closed automatically when exiting.
@@ -83,22 +83,6 @@ public class ChapterFragment extends Fragment {
 				}
 			}
 
-		} else {
-			if(bookText != null){
-				// Use try with resources so the BufferedReader gets closed automatically when exiting.
-				try(LineNumberReader reader = new LineNumberReader(new InputStreamReader(this.getActivity().getAssets().open("KingJamesVersion/" + book + ".txt")))){
-					for(int i = 0; i < counter; i++) {
-						// Read the line(s) only to get past them
-						if(reader.readLine() != null) reader.readLine();
-					}
-					String line;
-					// Null check and String value assignment
-					if((line = reader.readLine()) != null) text = line;
-				} catch(IOException e){
-					e.printStackTrace();
-				}
-				counter++;
-			}
 		}
 
 		// Returns the text of the book or null if unable to get the text.
@@ -106,14 +90,50 @@ public class ChapterFragment extends Fragment {
 		return text;
 	}
 
-	// TODO: implement this method to move forward one chapter on button click
-	private String getNextChapter(){
-		return null;
+	// Count up to the line right before the one needed, then read the next line into a String and return it.
+	private String getNextOrPreviousChapter(){
+		String text = null;
+
+		if(bookText != null){
+			// Use try with resources so the BufferedReader gets closed automatically when exiting.
+			try(LineNumberReader reader = new LineNumberReader(new InputStreamReader(this.getActivity().getAssets().open("KingJamesVersion/" + book + ".txt")))){
+				// Loop through all lines before the one needed, stopping at the correct one.
+				for(int i = 0; i < counter; i++) {
+					String line;
+					// Null check and String value assignment
+					if((line = reader.readLine()) != null) {
+						text = line;
+					} else {
+						// Prevents counter from climbing way beyond the number of chapters in the book.
+						// Even if the user keeps pressing the next button counter will only ever get as
+						// high as the highest chapter number.
+						counter--;
+					}
+				}
+			} catch(IOException e){
+				e.printStackTrace();
+			}
+		}
+
+		return text;
 	}
 
-	// TODO: implement this method to move backward one chapter on button click
-	private String getPreviousChapter(){
-		return null;
+	private void setFABListeners(){
+		next.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				counter++;
+				if(getNextOrPreviousChapter() != null) bookText.setText(getNextOrPreviousChapter());
+			}
+		});
+
+		previous.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if(counter > 1) counter--;
+				if(getNextOrPreviousChapter() != null) bookText.setText(getNextOrPreviousChapter());
+			}
+		});
 	}
 
 	/**
