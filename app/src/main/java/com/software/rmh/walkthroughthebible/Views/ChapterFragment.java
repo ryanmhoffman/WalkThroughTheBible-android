@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.software.rmh.walkthroughthebible.R;
@@ -26,6 +27,7 @@ public class ChapterFragment extends Fragment {
 	private TextView bookText;
 	private FloatingActionButton previous;
 	private FloatingActionButton next;
+	private ScrollView scrollView;
 
 	private ArrayList<String> books = new ArrayList<>();
 	private int position;
@@ -55,6 +57,8 @@ public class ChapterFragment extends Fragment {
 		next = (FloatingActionButton) root.findViewById(R.id.nextChapter);
 		previous = (FloatingActionButton) root.findViewById(R.id.previousChapter);
 		setFABListeners();
+
+		scrollView = (ScrollView) root.findViewById(R.id.scroller);
 
 		bookText = (TextView) root.findViewById(R.id.bookText);
 		new BookAsyncTask().execute(book);
@@ -103,6 +107,9 @@ public class ChapterFragment extends Fragment {
 					// Null check and String value assignment
 					if((line = reader.readLine()) != null) {
 						text = line;
+						// Reset the ScrollView to the top
+						scrollView.scrollTo(0, 0);
+
 					} else {
 						// Prevents counter from climbing way beyond the number of chapters in the book.
 						// Even if the user keeps pressing the next button counter will only ever get as
