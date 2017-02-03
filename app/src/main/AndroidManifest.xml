@@ -20,6 +20,10 @@
         </activity>
         <activity android:name=".Controllers.BookActivity">
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCbiYlkMHR1oe8oQVGvxHu0xGZo6SSPRmQ" />
     </application>
 
 </manifest>
