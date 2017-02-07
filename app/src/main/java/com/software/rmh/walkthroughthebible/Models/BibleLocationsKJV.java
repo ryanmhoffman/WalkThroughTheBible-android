@@ -877,4 +877,12 @@ public class BibleLocationsKJV {
 		{"Babylon", "Chaldea", "Hamath", "Jerusalem", "Jericho", "Libnah", "Riblah"}
 	};
 
+	private static final String[][] Lamentations = {
+		{"Jerusalem"},
+		{"Israel", "Jerusalem"},
+		{null},
+		{"Edom", "Jerusalem", "Sodom", "Uz", "Zion"},
+		{"Assyria", "Egypt"}
+	};
+
 }
