@@ -46,11 +46,10 @@ public class BookActivity extends AppCompatActivity implements OnMapReadyCallbac
 		mapFragment.getMapAsync(this);
 	}
 
-
 	@Override
 	public void onMapReady(GoogleMap googleMap) {
-		LatLng canton = new LatLng(40.7989, 81.3784);
-		googleMap.addMarker(new MarkerOptions().position(canton).title("Canton, OH"));
-		googleMap.moveCamera(CameraUpdateFactory.newLatLng(canton));
+		LatLng Jerusalem = new LatLng(31.7683, 35.2137);
+		googleMap.addMarker(new MarkerOptions().position(Jerusalem).title("Canton, OH"));
+		googleMap.moveCamera(CameraUpdateFactory.newLatLng(Jerusalem));
 	}
 }
