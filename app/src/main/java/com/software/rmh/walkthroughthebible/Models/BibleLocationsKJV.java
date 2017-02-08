@@ -1399,7 +1399,7 @@ public class BibleLocationsKJV {
 		{null},
 		{"Gog", "Magog"},
 		{"Israel", "Jerusalem", "temple"},
-		{null},
+		{null}
 	};
 
 }
