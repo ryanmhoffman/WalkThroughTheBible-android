@@ -885,4 +885,173 @@ public class BibleLocationsKJV {
 		{"Assyria", "Egypt"}
 	};
 
+	private static final String[][] Ezekiel = {
+		{"Chaldea", "Chebar"},
+		{"Israel"},
+		{"Chebar", "Israel", "Telabib"},
+		{"Israel", "Jerusalem"},
+		{"Israel", "Jerusalem"},
+		{"Israel"},
+		{"Israel"},
+		{"Israel", "Jerusalem", "temple"},
+		{"Israel", "Jerusalem"},
+		{"Chebar", "Israel"},
+		{"Chaldea", "Israel", "Jerusalem"},
+		{"Babylon", "Chaldea", "Israel", "Jerusalem"},
+		{"Israel", "Jerusalem"},
+		{"Dan", "Israel", "Jerusalem"},
+		{"Jerusalem"},
+		{"Assyria", "Canaan", "Chaldea", "Egypt", "Jerusalem", "Sodom", "Syria", "Samaria"},
+		{"Babylon", "Egypt", "Israel", "Jerusalem", "Lebanon"},
+		{"Israel"},
+		{"Babylon", "Egypt", "Israel"},
+		{"Egypt", "Israel"},
+		{"Ammon", "Babylon", "Israel", "Jerusalem"},
+		{"Israel", "Jerusalem"},
+		{"Assyria", "Babylon", "Chaldea", "Egypt", "Jerusalem", "Koa", "Shoa", "Samaria"},
+		{"Babylon", "Israel", "Jerusalem"},
+		{"Ammon", "Baalmeon", "Dedan", "Edom", "Israel", "Kiriathaim", "Moab", "Seir", "Teman"},
+		{"Babylon", "Jerusalem"},
+		{"Arabia", "Arvad", "Asshur", "Bashan", "Chilmad", "Damascus", "Dedan", "Dan", "Eden", "Egypt", "Geba", "Gebal", "Haran", "Helbon", "Israel", "Javan", "Kedar", "Lebanon", "Minnith", "Minni", "Meshech", "Persia", "Raamah", "Syria", "Sheba", "Tubal", "Tarshish", "Tyrus", "Zidon"},
+		{"Eden", "Israel"},
+		{"Babylon", "Egypt", "Ethiopia", "Israel", "Pathros", "Syene"},
+		{"Babylon", "Egypt", "Ethiopia", "Libya", "Pathros", "Pibeseth", "Syene", "Zoan"},
+		{"Assyria", "Eden", "Egypt", "Lebanon"},
+		{"Asshur", "Babylon", "Egypt", "Edom", "Elam", "Meshech", "Tubal"},
+		{"Israel", "Jerusalem"},
+		{"Israel"},
+		{"Israel", "mount Seir"},
+		{"Eden", "Israel", "Jerusalem"},
+		{"Ephraim", "Israel"},
+		{"Dedan", "Ethiopia", "Gog", "Israel", "Libya", "Magog", "Meshech", "Persia", "Sheba", "Tubal", "Tarshish"},
+		{"Bashan", "Gog", "Hamonah", "Israel", "Magog", "Meshech", "Tubal", "valley of Hamongog"},
+		{"Israel"},
+		{null},
+		{null},
+		{"Chebar", "Israel"},
+		{"Israel"},
+		{"Israel"},
+		{null},
+		{"Berothah", "Damascus", "Engedi", "Hazazontamar", "Hazezontamar", "Eneglaim", "Gilead", "great sea", "Hazarenan", "Hethlon", "Hamath", "Hauran", "Israel", "Jordan", "Kadesh", "Sibraim", "Tamar", "Zedad"},
+		{"Damascus", "Dan", "Ephraim", "great sea", "Hazarenan", "Hethlon", "Hamath", "Israel", "Kadesh", "Tamar"}
+	};
+
+	private static final String[][] Daniel = {
+		{"Babylon", "Chaldea", "Israel", "Jerusalem", "Mesha", "Shinar"},
+		{"Babylon", "Chaldea", "Mesha", "Syria"},
+		{"Babylon", "Chaldea", "Dura", "Mesha"},
+		{"Babylon", "Chaldea"},
+		{"Babylon", "Chaldea", "Jerusalem", "Media", "Persia"},
+		{"Jerusalem", "Persia"},
+		{"Babylon", "great sea"},
+		{"Dan", "Elam", "Media", "Persia", "Ulai"},
+		{"Chaldea", "Egypt", "Israel", "Jerusalem"},
+		{"Dan", "Hiddekel", "Persia", "Uphaz"},
+		{"Ammon", "Egypt", "Ethiopia", "Edom", "Libya", "Moab", "Persia"},
+		{null}
+	};
+
+	private static final String[][] Hosea = {
+		{"Israel", "Jezreel", "valley of Jezreel"},
+		{"Egypt", "Jezreel", "valley of Achor"},
+		{"Israel"},
+		{"Bethaven", "Ephraim", "Gilgal", "Israel"},
+		{"Assyria", "Bethaven", "Ephraim", "Gibeah", "Israel", "Mizpah", "Rama", "Ramah", "Tabor"},
+		{"Ephraim", "Gilead", "Israel"},
+		{"Assyria", "Egypt", "Ephraim", "Israel", "Samaria"},
+		{"Assyria", "Egypt", "Ephraim", "Israel", "Samaria", "temple"},
+		{"Assyria", "Baalpeor", "Egypt", "Ephraim", "Gilgal", "Gibeah", "Israel", "Memphis"},
+		{"Assyria", "Betharbel", "Bethel", "Bethaven", "Ephraim", "Gibeah", "Israel", "Samaria"},
+		{"Assyria", "Admah", "Egypt", "Ephraim", "Israel", "Zeboim"},
+		{"Assyria", "Bethel", "Egypt", "Ephraim", "Gilead", "Gilgal", "Israel", "Syria"},
+		{"Egypt", "Ephraim", "Israel", "Samaria"},
+		{"Asshur", "Ephraim", "Israel", "Lebanon"}
+	};
+
+	private static final String[][] Joel = {
+		{null},
+		{"Eden", "Israel", "Jerusalem", "mount Zion"},
+		{"Egypt", "Edom", "Israel", "Jerusalem", "temple", "Tyre", "valley of Shittim", "Zidon", "Zion"}
+	};
+
+	private static final String[][] Amos = {
+		{"Ammon", "Ashkelon", "Ashdod", "Bozrah", "Carmel", "Damascus", "Ekron", "Edom", "Gilead", "Gaza", "Israel", "Jerusalem", "Syria", "Teman", "Tekoa"},
+		{"Egypt", "Edom", "Israel", "Jerusalem", "Moab"},
+		{"Ashdod", "Bethel", "Damascus", "Egypt", "Israel", "Samaria"},
+		{"Bashan", "Bethel", "Egypt", "Gilgal", "Gomorrah", "Israel", "Sodom", "Samaria"},
+		{"Beersheba", "Beer", "Bethel", "Damascus", "Gilgal", "Israel"},
+		{"Calneh", "Gath", "Hamath", "Israel", "Samaria"},
+		{"Bethel", "Israel"},
+		{"Beersheba", "Dan", "Egypt", "Israel", "Samaria", "temple"},
+		{"Carmel", "Egypt", "Ethiopia", "Edom", "Israel", "Syria"}
+	};
+
+	private static final String[][] Obadiah = {
+		{"Canaan", "Ephraim", "Esau", "Edom", "Gilead", "Israel", "Jerusalem", "mount Zion", "Samaria", "Teman", "Tema", "Zarephath"}
+	};
+
+	private static final String[][] Jonah = {
+		{"Joppa", "Nineveh", "Tarshish"},
+		{"temple"},
+		{"Nineveh"},
+		{"Nineveh", "Tarshish"}
+	};
+
+	private static final String[][] Micah = {
+		{"Achzib", "Adullam", "Bethezel", "Gath", "Israel", "Jerusalem", "Lachish", "Mareshah", "Moreshethgath", "Maroth", "Moresheth", "Samaria", "temple", "Zaanan"},
+		{"Bozrah", "Israel"},
+		{"Israel", "Jerusalem"},
+		{"Babylon", "Jerusalem", "mount Zion"},
+		{"Assyria", "Bethlehem", "Israel", "Nimrod"},
+		{"Egypt", "Gilgal", "Israel", "Moab", "Shittim"},
+		{"Assyria", "Bashan", "Carmel", "Egypt", "Gilead"}
+	};
+
+	private static final String[][] Nahum = {
+		{"Bashan", "Carmel", "Lebanon", "Nineveh"},
+		{"Israel", "Nineveh"},
+		{"Assyria", "Egypt", "Ethiopia", "Nineveh"}
+	};
+
+	private static final String[][] Habakkuk = {
+		{"Chaldea"},
+		{"Lebanon", "temple"},
+		{"Cushan", "Midian", "mount Paran", "Teman"}
+	};
+
+	private static final String[][] Zephaniah = {
+		{"Jerusalem"},
+		{"Ammon", "Ashkelon", "Assyria", "Ashdod", "Canaan", "Ethiopia", "Ekron", "Gaza", "Gomorrah", "Israel", "Moab", "Nineveh", "Sodom"},
+		{"Ethiopia", "Israel", "Jerusalem"}
+	};
+
+	private static final String[][] Haggai = {
+		{null},
+		{"Egypt", "temple"}
+	};
+
+	private static final String[][] Zechariah = {
+		{"Israel", "Jerusalem"},
+		{"Babylon", "Jerusalem"},
+		{"Jerusalem"},
+		{null},
+		{"Shinar"},
+		{"Babylon", "temple"},
+		{"Jerusalem"},
+		{"Israel", "Jerusalem", "temple"},
+		{"Ashkelon", "Ashdod", "Damascus", "Ephraim", "Ekron", "Greece", "Gaza", "Hamath", "Hadrach", "Israel", "Jerusalem"},
+		{"Assyria", "Egypt", "Ephraim", "Gilead", "Lebanon"},
+		{"Bashan", "Israel", "Jordan", "Lebanon"},
+		{"Hadadrimmon", "Israel", "Jerusalem", "Megiddo"},
+		{"Jerusalem"},
+		{"Azal", "Canaan", "Egypt", "Geba", "Jerusalem", "mount of Olives", "Rimmon"}
+	};
+
+	private static final String[][] Malachi = {
+		{"Esau", "Edom", "Israel"},
+		{"Israel", "Jerusalem"},
+		{"Jerusalem", "temple"},
+		{"Horeb", "Israel"}
+	};
+
 }
