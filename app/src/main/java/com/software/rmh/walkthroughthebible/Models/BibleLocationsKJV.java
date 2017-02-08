@@ -8,6 +8,9 @@ package com.software.rmh.walkthroughthebible.Models;
 
 public class BibleLocationsKJV {
 
+	/**
+	 * Old Testament books of the Bible. All locations referenced in every chapter of every book is stored as a String[]
+	 */
 	private static final String[][] Genesis = {
 		{null},
 		{"Eden", "Pison", "Havilah", "Gihon", "Ethiopia", "Assyria", "Hiddekel", "Euphrates"},
@@ -496,48 +499,48 @@ public class BibleLocationsKJV {
 	};
 
 	private static final String[][] Job = {
-			{"Chaldea", "Uz"},
-			{"Tema"},
-			{null},
-			{"Tema"},
-			{null},
-			{"Sheba", "Tema"},
-			{null},
-			{null},
-			{null},
-			{null},
-			{null},
-			{null},
-			{null},
-			{null},
-			{"Tema"},
-			{null},
-			{null},
-			{null},
-			{null},
-			{null},
-			{null},
-			{"Ophir", "Tema"},
-			{null},
-			{null},
-			{null},
-			{null},
-			{null},
-			{"Ethiopia", "Ophir"},
-			{null},
-			{null},
-			{null},
-			{"Buz"},
-			{null},
-			{null},
-			{null},
-			{null},
-			{null},
-			{null},
-			{null},
-			{"Jordan"},
-			{null},
-			{"Tema"},
+		{"Chaldea", "Uz"},
+		{"Tema"},
+		{null},
+		{"Tema"},
+		{null},
+		{"Sheba", "Tema"},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{"Tema"},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{"Ophir", "Tema"},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{"Ethiopia", "Ophir"},
+		{null},
+		{null},
+		{null},
+		{"Buz"},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{"Jordan"},
+		{null},
+		{"Tema"},
 	};
 
 	private static final String[][] Psalms = {
@@ -1052,6 +1055,351 @@ public class BibleLocationsKJV {
 		{"Israel", "Jerusalem"},
 		{"Jerusalem", "temple"},
 		{"Horeb", "Israel"}
+	};
+
+	/**
+	 * New Testament books of the Bible.
+	 */
+
+	private static final String[][] Matthew = {
+		{"Babylon"},
+		{"Bethlehem", "Judaea", "Jerusalem", "Israel", "Egypt", "Rama", "Ramah", "Galilee", "Nazareth"},
+		{"the wilderness", "Judaea", "Jerusalem", "Jordan", "Galilee"},
+		{"the wilderness", "temple", "Galilee", "Nazareth", "Capernaum", "beyond the Jordan", "sea of Galilee", "Syria", "Decapolis", "Jerusalem", "Judaea"},
+		{"Jerusalem"},
+		{null},
+		{null},
+		{"Capernaum", "Israel", "country of the Gadarenes"},
+		{"Israel"},
+		{"Israel", "Sodom", "Gomorrha"},
+		{"the wilderness", "Chorazin", "Bethsaida", "Tyre", "Sidon", "Capernaum", "Sodom"},
+		{"temple", "Nineveh", "the south"},
+		{"his own country"},
+		{"Gennesaret"},
+		{"Jerusalem", "Tyre", "Sidon", "Israel", "sea of Galilee", "Magdala"},
+		{"Caesarea Philippi", "Jerusalem"},
+		{"an high mountain", "Galilee", "Capernaum"},
+		{null},
+		{"Galilee", "Judaea", "beyond the Jordan", "Israel"},
+		{"Jerusalem", "Jericho"},
+		{"Jerusalem", "Bethphage", "mount of Olives", "Sion", "Nazareth", "Galilee", "temple", "Bethany"},
+		{null},
+		{"temple", "Jerusalem"},
+		{"temple", "mount of Olives", "Judaea", "the wilderness"},
+		{null},
+		{"palace", "Bethany", "at thy house", "mount of Olives", "Galilee", "Gethsemane", "temple", "Nazareth"},
+		{"temple", "Israel", "stood before the governor", "common hall", "Cyrene", "Golgotha", "place of a skull", "Galilee", "Arimathaea", "his own new tomb", "unto Pilate"},
+		{"Galilee"}
+	};
+
+	private static final String[][] Mark = {
+		{"the wilderness", "Judaea", "Jerusalem", "Jordan", "Nazareth", "Galilee", "sea of Galilee", "Capernaum"},
+		{"Capernaum"},
+		{"Galilee", "Judaea", "Jerusalem", "Idumaea", "beyond the Jordan", "Tyre", "Sidon"},
+		{null},
+		{"country of the Gadarenes", "Decapolis"},
+		{"Gomorrha", "his own country", "Galilee", "Bethsaida", "Gennesaret"},
+		{"Jerusalem", "Tyre", "Sidon", "sea of Galilee", "Decapolis"},
+		{"Dalmanutha", "Bethsaida", "Caesarea Philippi"},
+		{"an high mountain", "Galilee", "Capernaum"},
+		{"Judaea", "beyond the Jordan", "Jerusalem", "Jericho", "Nazareth"},
+		{"Jerusalem", "Bethphage", "Bethany", "mount of Olives", "temple"},
+		{"Israel", "temple"},
+		{"temple", "mount of Olives", "Judaea"},
+		{"Bethany", "upper room", "mount of Olives", "Galilee", "Gethsemane", "temple", "palace"},
+		{"Praetorium", "Cyrene", "Golgotha", "place of a skull", "temple", "Israel", "Galilee", "Jerusalem", "Arimathaea", "sepulchre"},
+		{"Nazareth", "Galilee"}
+	};
+
+	private static final String[][] Luke = {
+			{"Judaea", "temple", "Israel", "Galilee", "Nazareth", "the wilderness"},
+		{"Syria", "Galilee", "Nazareth", "Judaea", "Bethlehem", "Jerusalem", "Israel", "temple"},
+		{"Judaea", "Galilee", "Ituraea", "Trachonitis", "Abilene", "the wilderness", "Jordan"},
+		{"Jordan", "the wilderness", "Jerusalem", "temple", "Galilee", "Nazareth", "Capernaum", "his own country", "Israel", "Sidon", "Judaea"},
+		{"lake of Gennesaret", "Galilee", "Judaea", "Jerusalem"},
+		{"Judaea", "Jerusalem", "Tyre", "Sidon"},
+		{"Capernaum", "Israel", "Nain", "Judaea", "the wilderness"},
+		{"country of the Gadarenes", "Galilee"},
+		{"Bethsaida", "Jerusalem"},
+		{"Sodom", "Chorazin", "Bethsaida", "Tyre", "Sidon", "Capernaum", "Jerusalem", "Jericho"},
+		{"Nineveh", "the south"},
+		{null},
+		{"Siloam", "Jerusalem"},
+		{null},
+		{null},
+		{null},
+		{"Jerusalem", "Samaria", "Galilee", "Sodom"},
+		{"temple", "Jerusalem", "Jericho", "Nazareth"},
+		{"Jericho", "Jerusalem", "Bethphage", "Bethany", "mount of Olives", "temple"},
+		{"temple"},
+		{"temple", "Jerusalem", "Judaea", "mount called Olivet"},
+		{"upper room", "Israel", "mount of Olives", "temple", "the hall"},
+		{"unto Pilate", "Judaea", "Galilee", "Jerusalem", "Cyrene", "The Skull", "temple", "Arimathaea", "sepulchre"},
+		{"Galilee", "Emmaus", "Jerusalem", "Nazareth", "Israel", "Bethany", "temple"}
+	};
+
+	private static final String[][] John = {
+		{"Jerusalem", "the wilderness", "Bethabara beyond Jordan", "Israel", "Galilee", "Bethsaida", "Nazareth"},
+		{"Cana", "Galilee", "Capernaum", "Jerusalem", "temple"},
+		{"Israel", "the wilderness", "Judaea", "Aenon", "Salim", "Jordan"},
+		{"Judaea", "Galilee", "Samaria", "Sychar", "Jerusalem", "his own country", "Cana", "Capernaum"},
+		{"Jerusalem", "Bethesda", "temple"},
+		{"sea of Galilee", "sea of Tiberias", "Capernaum", "Tiberias", "the wilderness"},
+		{"Galilee", "Judaea", "temple", "Jerusalem", "Bethlehem"},
+		{"mount of Olives", "temple"},
+		{"Siloam"},
+		{"Jerusalem", "temple", "across the Jordan"},
+		{"Bethany", "Judaea", "Jerusalem", "the wilderness", "Ephraim", "temple"},
+		{"Bethany", "Jerusalem", "Israel", "Sion", "Bethsaida", "Galilee"},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{"brook Cedron", "garden", "Nazareth", "palace", "hall of judgment", "judgment hall"},
+		{"the Pavement", "Gabbatha", "place of a skull", "Golgotha", "Arimathaea", "Jesus' Tomb"},
+		{null},
+		{"sea of Tiberias", "Cana", "Galilee"}
+	};
+
+	private static final String[][] Acts = {
+		{"Jerusalem", "Israel", "Judaea", "Samaria", "Galilee", "mount called Olivet", "upper room", "The field of blood"},
+		{"Jerusalem", "Mesopotamia", "Judaea", "Cappadocia", "Pontus", "Asia", "Phrygia", "Pamphylia", "Egypt", "Libya", "Cyrene", "Rome", "Israel", "Nazareth", "temple"},
+		{"temple", "Nazareth", "Israel"},
+		{"temple", "Jerusalem", "Israel", "Nazareth", "Cyprus"},
+		{"Jerusalem", "temple", "Israel"},
+		{"Syrian Antioch", "Jerusalem", "Cilicia", "Asia", "Nazareth"},
+		{"Mesopotamia", "Charran", "land of the Chaldaeans", "Egypt", "Israel", "wilderness", "mount Sinai", "Babylon"},
+		{"Jerusalem", "Judaea", "Samaria", "Gaza", "Azotus", "Caesarea"},
+		{"Damascus", "Jerusalem", "Tarsus", "Israel", "Caesarea", "Judaea", "Galilee", "Samaria", "Lydda", "Saron", "Joppa"},
+		{"Caesarea", "Joppa", "Israel", "Judaea", "Galilee", "Nazareth", "Jerusalem"},
+		{"Judaea", "Jerusalem", "Caesarea", "Phenice", "Cyprus", "Syrian Antioch", "Cyrene", "Tarsus"},
+		{"Judaea", "Caesarea", "Tyre", "Sidon", "Jerusalem"},
+		{"Syrian Antioch", "Cyrene", "Seleucia", "Cyprus", "Salamis", "Paphos", "Perga", "Pamphylia", "Jerusalem", "Pisidian Antioch", "Israel", "Egypt", "wilderness", "Canaan", "Galatia", "Iconium"},
+		{"Iconium", "Lystra", "Derbe", "Lycaonia", "Pisidian Antioch", "Pisidia", "Pamphylia", "Perga", "Attalia", "Syrian Antioch"},
+		{"Judaea", "Jerusalem", "Phenice", "Samaria", "Syrian Antioch", "Syria", "Cilicia", "Pamphylia", "Cyprus"},
+		{"Derbe", "Lystra", "Iconium", "Jerusalem", "Phrygia", "Galatia", "Asia", "Mysia", "Bithynia", "Troas", "Macedonia", "Samothracia", "Neapolis", "Philippi"},
+		{"Amphipolis", "Apollonia", "Thessalonica", "Berea", "Athens"},
+		{"Athens", "Corinth", "Pontus", "Italy", "Rome", "Macedonia", "Achaia", "Syria", "Cenchrea", "Ephesus", "Caesarea", "Syrian Antioch", "Galatia", "Phrygia", "Alexandria"},
+		{"Corinth", "Ephesus", "Macedonia", "Achaia", "Jerusalem", "Rome", "Asia"},
+		{"Macedonia", "Greece", "Syria", "Berea", "Derbe", "Troas", "Philippi", "Assos", "Mitylene", "Chios", "Samos", "Miletus", "Ephesus", "Asia", "Jerusalem"},
+		{"Cos", "Rhodes", "Patara", "Phenice", "Cyprus", "Syria", "Tyre", "Jerusalem", "Ptolemais", "Caesarea", "Judaea", "temple", "Asia", "Israel", "Egypt", "Tarsus", "Cilicia"},
+		{"Tarsus", "Cilicia", "Damascus", "Jerusalem", "Nazareth", "temple"},
+		{"Jerusalem", "Rome", "Caesarea", "Antipatris", "Cilicia"},
+		{"temple", "Jerusalem", "Asia"},
+		{"Jerusalem", "Caesarea", "temple"},
+		{"Jerusalem", "Nazareth", "Damascus", "Judaea", "temple"},
+		{"Adramyttium", "Asia", "Macedonia", "Thessalonica", "Sidon", "Cyprus", "Cilicia", "Pamphylia", "Myra", "Lycia", "Alexandria", "Italy", "Cnidus", "Crete", "Salmone", "The fair havens", "Lasea", "Phoenix", "Clauda"},
+		{"Melita", "Alexandria", "Syracuse", "Rhegium", "Puteoli", "Rome", "Appii", "The three taverns", "Jerusalem", "Israel", "Judaea"}
+	};
+
+	private static final String[][] Romans = {
+		{"Rome"},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null},
+		{"Gomorrha", "Israel", "Sion", "Sodom"},
+		{"Israel"},
+		{"Israel", "Sion"},
+		{null},
+		{null},
+		{null},
+		{"Achaia", "Illyricum", "Jerusalem", "Judaea", "Macedonia", "Spain"},
+		{"Achaia", "Cenchrea"}
+	};
+
+	private static final String[][] First_Corinthians = {
+		{"Corinth"},
+		{null},
+		{"temple"},
+		{null},
+		{null},
+		{"temple"},
+		{null},
+		{"temple"},
+		{"temple"},
+		{"Israel", "wilderness"},
+		{null},
+		{null},
+		{null},
+		{null},
+		{"Ephesus"},
+		{"Achaia", "Asia", "Ephesus", "Galatia", "Jerusalem", "Macedonia"}
+	};
+
+	private static final String[][] Second_Corinthians = {
+		{"Achaia", "Asia", "Corinth", "Judaea", "Macedonia"},
+		{"Macedonia", "Troas"},
+		{"Israel"},
+		{null},
+		{null},
+		{"Corinth", "temple"},
+		{"Macedonia"},
+		{"Macedonia"},
+		{"Achaia", "Macedonia"},
+		{null},
+		{"Achaia", "Damascus", "Israel", "Macedonia"},
+		{null},
+		{null}
+	};
+
+	private static final String[][] Galatians = {
+		{"Arabia", "Cilicia", "Damascus", "Galatia", "Jerusalem", "Judaea", "Syria"},
+		{"Jerusalem"},
+		{"Galatia"},
+		{"Arabia", "Jerusalem", "mount Sinai"},
+		{null},
+		{"Israel"}
+	};
+
+	private static final String[][] Ephesians = {
+		{"Ephesus"},
+		{"Israel", "temple"},
+		{null},
+		{null},
+		{null},
+		{null}
+	};
+
+	private static final String[][] Philippians = {
+		{"Philippi"},
+		{null},
+		{"Israel"},
+		{"Macedonia", "Philippi", "Thessalonica"}
+	};
+
+	private static final String[][] Colossians = {
+		{null},
+		{"Laodicea"},
+		{null},
+		{"Hierapolis", "Laodicea"}
+	};
+
+	private static final String[][] First_Thessalonians = {
+		{"Achaia", "Macedonia"},
+		{"Judaea", "Philippi"},
+		{"Athens"},
+		{"Macedonia"},
+		{null}
+	};
+
+	private static final String[][] Second_Thessalonians = {
+		{null},
+		{"temple"},
+		{null}
+	};
+
+	private static final String[][] First_Timothy = {
+		{"Ephesus", "Macedonia"},
+		{null},
+		{null},
+		{null},
+		{null},
+		{null}
+	};
+
+	private static final String[][] Second_Timothy = {
+		{"Asia", "Ephesus", "Rome"},
+		{null},
+		{"Iconium", "Lystra"},
+		{"Corinth", "Dalmatia", "Ephesus", "Galatia", "Thessalonica", "Troas"}
+	};
+
+	private static final String[][] Titus = {
+		{"Crete"},
+		{null},
+		{"Nicopolis"}
+	};
+
+	private static final String[][] Philemon = {
+		{null}
+	};
+
+	private static final String[][] Hebrews = {
+		{null},
+		{null},
+		{"Egypt", "the wilderness", "wilderness"},
+		{null},
+		{null},
+		{null},
+		{"Salem"},
+		{"Egypt", "Israel"},
+		{null},
+		{null},
+		{"Egypt", "Israel", "Jericho", "Red sea"},
+		{"Esau", "Jerusalem", "Sion"},
+		{"Italy"}
+	};
+
+	private static final String[][] James = {
+		{null},
+		{null},
+		{null},
+		{null},
+		{null}
+	};
+
+	private static final String[][] First_Peter = {
+		{"Asia", "Bithynia", "Cappadocia", "Galatia", "Pontus"},
+		{"Sion"},
+		{null},
+		{null},
+		{"Babylon"}
+	};
+
+	private static final String[][] Second_Peter = {
+		{null},
+		{"Gomorrha", "Sodom"},
+		{null}
+	};
+
+	private static final String[][] First_John = {
+		{null},
+		{null},
+		{null},
+		{null},
+		{null}
+	};
+
+	private static final String[][] Second_John = {
+		{null}
+	};
+
+	private static final String[][] Third_John = {
+		{null}
+	};
+
+	private static final String[][] Jude = {
+		{"Egypt", "Gomorrha", "Sodom"}
+	};
+
+	private static final String[][] Revelations = {
+		{"Asia", "Ephesus", "Laodicea", "Philadelphia", "Pergamos", "Patmos", "Sardis", "Smyrna", "Thyatira"},
+		{"Ephesus", "Israel", "Pergamos", "Smyrna", "Thyatira"},
+		{"Jerusalem", "Laodicea", "Philadelphia", "Sardis", "temple"},
+		{null},
+		{null},
+		{null},
+		{"Israel", "temple"},
+		{null},
+		{"Euphrates"},
+		{null},
+		{"Egypt", "Sodom", "temple"},
+		{null},
+		{null},
+		{"Babylon", "Sion", "temple"},
+		{"temple"},
+		{"Babylon", "Euphrates", "temple"},
+		{null},
+		{"Babylon"},
+		{null},
+		{"Gog", "Magog"},
+		{"Israel", "Jerusalem", "temple"},
+		{null},
 	};
 
 }
