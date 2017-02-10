@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 			if(getSupportActionBar() != null) getSupportActionBar().setTitle(R.string.books);
 		}
 		initViews();
+		initBooks();
 
 	}
 
@@ -97,6 +98,10 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 
 	@Override
 	public void onScroll(int direction) {
+
+	}
+
+	private void initBooks(){
 
 	}
 
