@@ -8,12 +8,17 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.software.rmh.walkthroughthebible.Models.BibleLocationsKJV;
+import com.software.rmh.walkthroughthebible.Models.Book;
+import com.software.rmh.walkthroughthebible.Models.Books;
 import com.software.rmh.walkthroughthebible.R;
 import com.software.rmh.walkthroughthebible.Views.AboutFragment;
 import com.software.rmh.walkthroughthebible.Views.BiblesFragment;
 import com.software.rmh.walkthroughthebible.Views.BookListFragment;
 import com.software.rmh.walkthroughthebible.Views.GlossaryFragment;
 import com.software.rmh.walkthroughthebible.Views.VirtualTourFragment;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements BookListFragment.BookListFragmentListener {
 
@@ -23,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 	private static String TOUR_FRAGMENT_KEY = "VirtualTour";
 	private static String BIBLES_FRAGMENT_KEY = "BiblesList";
 	private static String ABOUT_FRAGMENT_KEY = "About";
+
+	// ArrayList of Book objects. Will need to be accessed by other classes.
+	private ArrayList<Book> books = new ArrayList<>();
 
 	FragmentManager fm = getFragmentManager();
 	AHBottomNavigation bottomNavigation;
@@ -101,8 +109,23 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 
 	}
 
+	/**
+	 * Creates all 66 books of the Bible and adds them to an ArrayList that stores them in order.
+	 * Each Book object contains the name, which is pulled from resources in the strings.xml from an array,
+	 * the number of chapters, which is pulled from a HashMap in Books.class, the book number in numerical order which
+	 * is just equal to the index plus one, since indexing starts at 0 but the first book of the Bible (Genesis) is
+	 * book 1, and finally two-dimensional String array which all the locations referenced in that book, broken out
+	 * by each chapter as its own array.
+	 */
 	private void initBooks(){
-
+		BibleLocationsKJV kjv = new BibleLocationsKJV();
+		// Gets the array from Resources (strings.xml)
+		String[] bookNames = getResources().getStringArray(R.array.all_books);
+		// Stops looping at 65 because there are 66 books and 0-65 == 66 loops.
+		for(int i = 0; i < 66; i++) {
+			Book book = new Book(bookNames[i], Books.getMap().get(bookNames[i]), i+1, kjv.getBookLocations(i));
+			books.add(book);
+		}
 	}
 
 }

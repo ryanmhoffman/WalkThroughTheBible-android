@@ -81,4 +81,7 @@ public class Books {
 		map.put("Revelations", 22);
 	}
 
+	public static Map<String, Integer> getMap() {
+		return map;
+	}
 }
