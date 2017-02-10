@@ -123,7 +123,11 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 		String[] bookNames = getResources().getStringArray(R.array.all_books);
 		// Stops looping at 65 because there are 66 books and 0-65 == 66 loops.
 		for(int i = 0; i < 66; i++) {
-			Book book = new Book(bookNames[i], Books.getMap().get(bookNames[i]), i+1, kjv.getBookLocations(i));
+			Book book = new Book();
+			book.setName(bookNames[i]) // Only works because the books are in order in the array
+					.setChapters(Books.getMap().get(bookNames[i])) // Sets number of chapters the book has
+					.setIndex(i+1) // Loop index + 1 == book index
+					.setLocations(kjv.getBookLocations(i));
 			books.add(book);
 		}
 	}
