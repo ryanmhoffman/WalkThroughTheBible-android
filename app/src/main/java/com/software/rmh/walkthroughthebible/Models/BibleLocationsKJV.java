@@ -1402,4 +1402,20 @@ public class BibleLocationsKJV {
 		{null}
 	};
 
+	private String[][][] allBooks = {
+			Genesis, Exodus, Leviticus, Numbers, Deuteronomy, Joshua, Judges, Ruth, First_Samuel, Second_Samuel, First_Kings, Second_Kings, First_Chronicles, Second_Chronicles,
+			Ezra, Nehemiah, Esther, Job, Psalms, Proverbs, Ecclesiasties, Song_of_Solomon, Isaiah, Jeremiah, Lamentations, Ezekiel, Daniel, Hosea, Joel, Amos, Obadiah, Jonah,
+			Micah, Nahum, Habakkuk, Zechariah, Haggai, Zephaniah, Malachi, Matthew, Mark, Luke, John, Acts, Romans, First_Corinthians, Second_Corinthians, Galatians, Ephesians,
+			Philippians, Colossians, First_Thessalonians, Second_Thessalonians, First_Timothy, Second_Timothy, Titus, Philemon, Hebrews, James, First_Peter, Second_Peter,
+			First_John, Second_John, Third_John, Jude, Revelations
+	};
+
+	public String[][] getBookLocations(int book){
+		if(book > 65 || book < 0) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		return allBooks[book];
+	}
+
 }
