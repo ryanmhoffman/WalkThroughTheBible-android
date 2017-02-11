@@ -132,4 +132,8 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 		}
 	}
 
+	public ArrayList<Book> getBooks(){
+		return books;
+	}
+
 }
