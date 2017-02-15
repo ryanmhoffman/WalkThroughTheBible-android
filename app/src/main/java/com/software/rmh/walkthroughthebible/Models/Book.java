@@ -1,5 +1,7 @@
 package com.software.rmh.walkthroughthebible.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 /**
  * Created by rhoffman on 2/9/17.
  *
@@ -10,7 +12,7 @@ package com.software.rmh.walkthroughthebible.Models;
  * every location mentioned within the book.
  */
 
-public class Book {
+public class Book implements Parcelable {
 
 	private String name;
 	private int chapters;
@@ -103,4 +105,37 @@ public class Book {
 		this.name = name;
 		return this;
 	}
+
+	private Book(Parcel in) {
+		name = in.readString();
+		chapters = in.readInt();
+		index = in.readInt();
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(name);
+		dest.writeInt(chapters);
+		dest.writeInt(index);
+	}
+
+	@SuppressWarnings("unused")
+	public static final Parcelable.Creator<Book> CREATOR = new Parcelable.Creator<Book>() {
+		@Override
+		public Book createFromParcel(Parcel in) {
+			return new Book(in);
+		}
+
+		@Override
+		public Book[] newArray(int size) {
+			return new Book[size];
+		}
+	};
+
+
 }

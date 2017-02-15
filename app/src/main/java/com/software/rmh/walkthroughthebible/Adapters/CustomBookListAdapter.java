@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.software.rmh.walkthroughthebible.Controllers.BookActivity;
+import com.software.rmh.walkthroughthebible.Models.Book;
 import com.software.rmh.walkthroughthebible.R;
 
 import java.util.ArrayList;
@@ -18,9 +19,9 @@ import java.util.ArrayList;
  */
 public class CustomBookListAdapter extends RecyclerView.Adapter<CustomBookListAdapter.ViewHolder> {
 
-	private final ArrayList<String> books;
+	private final ArrayList<Book> books;
 
-	public CustomBookListAdapter(ArrayList<String> items) {
+	public CustomBookListAdapter(ArrayList<Book> items) {
 		books = items;
 	}
 
@@ -34,7 +35,7 @@ public class CustomBookListAdapter extends RecyclerView.Adapter<CustomBookListAd
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
 
-		holder.textView.setText(books.get(position));
+		holder.textView.setText(books.get(position).getName());
 	}
 
 	@Override

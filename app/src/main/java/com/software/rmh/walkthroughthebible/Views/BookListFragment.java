@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.software.rmh.walkthroughthebible.Adapters.CustomBookListAdapter;
+import com.software.rmh.walkthroughthebible.Controllers.MainActivity;
+import com.software.rmh.walkthroughthebible.Models.Book;
 import com.software.rmh.walkthroughthebible.R;
 
 import java.util.ArrayList;
@@ -21,9 +23,10 @@ import java.util.Arrays;
  */
 public class BookListFragment extends Fragment {
 
-	private ArrayList<String> books;
+	private ArrayList<Book> books;
 	private RecyclerView recyclerView;
 	private BookListFragmentListener listener;
+	private MainActivity activity = (MainActivity) getActivity();
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -42,10 +45,11 @@ public class BookListFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		books = new ArrayList<>();
+		books = activity.getBooks();
 
-		String[] booksArray = getResources().getStringArray(R.array.all_books);
+		/*String[] booksArray = getResources().getStringArray(R.array.all_books);
 		int len = booksArray.length;
-		books.addAll(Arrays.asList(booksArray).subList(0, len));
+		books.addAll(Arrays.asList(booksArray).subList(0, len));*/
 
 		if(listener == null){
 			listener = (BookListFragmentListener) getActivity();
