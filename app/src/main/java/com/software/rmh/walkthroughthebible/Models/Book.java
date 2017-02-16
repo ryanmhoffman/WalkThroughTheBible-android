@@ -2,6 +2,8 @@ package com.software.rmh.walkthroughthebible.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.io.Serializable;
 /**
  * Created by rhoffman on 2/9/17.
  *
@@ -12,7 +14,7 @@ import android.os.Parcelable;
  * every location mentioned within the book.
  */
 
-public class Book implements Parcelable {
+public class Book implements Parcelable, Serializable {
 
 	private String name;
 	private int chapters;
@@ -110,6 +112,7 @@ public class Book implements Parcelable {
 		name = in.readString();
 		chapters = in.readInt();
 		index = in.readInt();
+		locations = (String[][]) in.readSerializable();
 	}
 
 	@Override

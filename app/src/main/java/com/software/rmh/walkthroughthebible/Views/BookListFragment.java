@@ -16,7 +16,6 @@ import com.software.rmh.walkthroughthebible.Models.Book;
 import com.software.rmh.walkthroughthebible.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * A fragment representing a list of books in String format.
@@ -44,8 +43,6 @@ public class BookListFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		books = new ArrayList<>();
-		books = activity.getBooks();
 
 		/*String[] booksArray = getResources().getStringArray(R.array.all_books);
 		int len = booksArray.length;
@@ -65,7 +62,12 @@ public class BookListFragment extends Fragment {
 		if(view instanceof RecyclerView) {
 			recyclerView = (RecyclerView) view;
 			recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-			recyclerView.setAdapter(new CustomBookListAdapter(books));
+			if(books != null){
+				recyclerView.setAdapter(new CustomBookListAdapter(books));
+			} else {
+				listener.onBookListEmpty();
+				recyclerView.setAdapter(new CustomBookListAdapter(books));
+			}
 			DividerItemDecoration divider = new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL);
 			recyclerView.addItemDecoration(divider);
 		}
@@ -83,7 +85,10 @@ public class BookListFragment extends Fragment {
 	}
 
 	public interface BookListFragmentListener {
-		void onScroll(int direction);
+		void onBookListEmpty();
 	}
 
+	public void setBookList(ArrayList<Book> books){
+		this.books = books;
+	}
 }

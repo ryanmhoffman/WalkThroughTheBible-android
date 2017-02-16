@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.software.rmh.walkthroughthebible.Controllers.BookActivity;
 import com.software.rmh.walkthroughthebible.Models.Book;
+import com.software.rmh.walkthroughthebible.Models.Wrapper;
 import com.software.rmh.walkthroughthebible.R;
 
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class CustomBookListAdapter extends RecyclerView.Adapter<CustomBookListAd
 		public void onClick(View view) {
 			Intent intent = new Intent(view.getContext(), BookActivity.class);
 			Bundle bundle = new Bundle();
-			bundle.putStringArrayList("ARRAYLIST", books);
+			bundle.putSerializable("ARRAYLIST", new Wrapper(books));
 			bundle.putInt("BOOK_POSITION", getAdapterPosition());
 			intent.putExtras(bundle);
 			view.getContext().startActivity(intent);

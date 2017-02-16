@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.software.rmh.walkthroughthebible.Models.Book;
+import com.software.rmh.walkthroughthebible.Models.Wrapper;
 import com.software.rmh.walkthroughthebible.R;
 
 import java.io.IOException;
@@ -29,7 +31,7 @@ public class ChapterFragment extends Fragment {
 	private FloatingActionButton next;
 	private ScrollView scrollView;
 
-	private ArrayList<String> books = new ArrayList<>();
+	private ArrayList<Book> books = new ArrayList<>();
 	private int position;
 	private String book;
 	private Bundle bundle;
@@ -48,10 +50,11 @@ public class ChapterFragment extends Fragment {
 		View root = inflater.inflate(R.layout.fragment_chapter, container, false);
 
 		if((bundle = getArguments()) != null){
-			books = bundle.getStringArrayList("ARRAYLIST");
+			Wrapper wrapper = (Wrapper) bundle.getSerializable("ARRAYLIST");
+			books = wrapper.getBooks();
 			position = bundle.getInt("BOOK_POSITION");
 
-			book = books.get(position);
+			book = books.get(position).getName();
 		}
 
 		next = (FloatingActionButton) root.findViewById(R.id.nextChapter);
@@ -80,7 +83,7 @@ public class ChapterFragment extends Fragment {
 				// Use try with resources so the BufferedReader gets closed automatically when exiting.
 				try(LineNumberReader reader = new LineNumberReader(new InputStreamReader(this.getActivity().getAssets().open("KingJamesVersion/" + book + ".txt")))){
 					String line;
-					// Typical Java null check :/ and assign the String
+					// Assign the String value if not null.
 					if((line = reader.readLine()) != null) text = line;
 				} catch(IOException e){
 					e.printStackTrace();

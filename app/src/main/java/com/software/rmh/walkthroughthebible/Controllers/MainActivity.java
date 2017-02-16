@@ -10,7 +10,6 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.software.rmh.walkthroughthebible.Models.BibleLocationsKJV;
 import com.software.rmh.walkthroughthebible.Models.Book;
-import com.software.rmh.walkthroughthebible.Models.Books;
 import com.software.rmh.walkthroughthebible.R;
 import com.software.rmh.walkthroughthebible.Views.AboutFragment;
 import com.software.rmh.walkthroughthebible.Views.BiblesFragment;
@@ -104,11 +103,6 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 		if(getSupportActionBar() != null) getSupportActionBar().setTitle(titleResource);
 	}
 
-	@Override
-	public void onScroll(int direction) {
-
-	}
-
 	/**
 	 * Creates all 66 books of the Bible and adds them to an ArrayList that stores them in order.
 	 * Each Book object contains the name, which is pulled from resources in the strings.xml from an array,
@@ -125,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 		for(int i = 0; i < 66; i++) {
 			Book book = new Book();
 			book.setName(bookNames[i]) // Only works because the books are in order in the array
-					.setChapters(Books.getMap().get(bookNames[i])) // Sets number of chapters the book has
+					//.setChapters(Books.map.get(book.getName())) // Sets number of chapters the book has
 					.setIndex(i+1) // Loop index + 1 == book index
 					.setLocations(kjv.getBookLocations(i));
 			books.add(book);
@@ -136,4 +130,9 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 		return books;
 	}
 
+	@Override
+	public void onBookListEmpty() {
+		BookListFragment fragment = (BookListFragment) fm.findFragmentByTag(BOOKS_FRAGMENT_KEY);
+		fragment.setBookList(books);
+	}
 }

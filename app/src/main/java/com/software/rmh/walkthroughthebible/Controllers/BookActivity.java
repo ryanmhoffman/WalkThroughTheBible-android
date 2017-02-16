@@ -10,6 +10,8 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.software.rmh.walkthroughthebible.Models.Book;
+import com.software.rmh.walkthroughthebible.Models.Wrapper;
 import com.software.rmh.walkthroughthebible.R;
 import com.software.rmh.walkthroughthebible.Views.ChapterFragment;
 
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 
 public class BookActivity extends AppCompatActivity implements OnMapReadyCallback{
 
-	private ArrayList<String> books = new ArrayList<>();
+	private ArrayList<Book> books = new ArrayList<>();
 	private int position;
 
 	private FragmentManager fm = getFragmentManager();
@@ -32,15 +34,14 @@ public class BookActivity extends AppCompatActivity implements OnMapReadyCallbac
 			ChapterFragment fragment = new ChapterFragment();
 			fragment.setArguments(bundle);
 			fm.beginTransaction().add(R.id.bookContainer, fragment).commit();
-		}
 
-		if(bundle != null){
-			books = bundle.getStringArrayList("ARRAYLIST");
+			Wrapper wrapper = (Wrapper) bundle.getSerializable("ARRAYLIST");
+			books = wrapper.getBooks();
 			position = bundle.getInt("BOOK_POSITION");
 		}
 
 		// Set the ActionBar title to the name of the book.
-		if(getSupportActionBar() != null) getSupportActionBar().setTitle(books.get(position));
+		if(getSupportActionBar() != null) getSupportActionBar().setTitle(books.get(position).getName());
 
 		MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
 		mapFragment.getMapAsync(this);
