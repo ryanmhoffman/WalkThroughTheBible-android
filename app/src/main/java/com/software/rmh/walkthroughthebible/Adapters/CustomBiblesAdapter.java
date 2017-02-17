@@ -1,5 +1,6 @@
 package com.software.rmh.walkthroughthebible.Adapters;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,9 @@ public class CustomBiblesAdapter extends RecyclerView.Adapter<CustomBiblesAdapte
 	public void onBindViewHolder(CustomViewHolder holder, int position) {
 
 		holder.textView.setText(bibles.get(position));
+		if(position == 1){
+			holder.textView.setTextColor(ContextCompat.getColor(holder.textView.getContext(), android.R.color.darker_gray));
+		}
 	}
 
 	@Override
