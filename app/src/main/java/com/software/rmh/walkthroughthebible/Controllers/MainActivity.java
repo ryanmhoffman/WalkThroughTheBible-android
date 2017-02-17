@@ -14,8 +14,6 @@ import com.software.rmh.walkthroughthebible.R;
 import com.software.rmh.walkthroughthebible.Views.AboutFragment;
 import com.software.rmh.walkthroughthebible.Views.BiblesFragment;
 import com.software.rmh.walkthroughthebible.Views.BookListFragment;
-import com.software.rmh.walkthroughthebible.Views.GlossaryFragment;
-import com.software.rmh.walkthroughthebible.Views.VirtualTourFragment;
 
 import java.util.ArrayList;
 
@@ -23,8 +21,8 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 
 	// Keys to identify each Fragment in the stack.
 	private static String BOOKS_FRAGMENT_KEY = "BookList";
-	private static String GLOSSARY_FRAGMENT_KEY = "Glossary";
-	private static String TOUR_FRAGMENT_KEY = "VirtualTour";
+	//private static String GLOSSARY_FRAGMENT_KEY = "Glossary";
+	//private static String TOUR_FRAGMENT_KEY = "VirtualTour";
 	private static String BIBLES_FRAGMENT_KEY = "BiblesList";
 	private static String ABOUT_FRAGMENT_KEY = "About";
 
@@ -51,14 +49,14 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 
 		bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
 		AHBottomNavigationItem books = new AHBottomNavigationItem(getString(R.string.books), ContextCompat.getDrawable(this, R.drawable.icon_book));
-		AHBottomNavigationItem glossary = new AHBottomNavigationItem(getString(R.string.glossary), ContextCompat.getDrawable(this, R.drawable.icon_glossary));
-		AHBottomNavigationItem tour = new AHBottomNavigationItem(getString(R.string.tour), ContextCompat.getDrawable(this, R.drawable.icon_tour));
+		//AHBottomNavigationItem glossary = new AHBottomNavigationItem(getString(R.string.glossary), ContextCompat.getDrawable(this, R.drawable.icon_glossary));
+		//AHBottomNavigationItem tour = new AHBottomNavigationItem(getString(R.string.tour), ContextCompat.getDrawable(this, R.drawable.icon_tour));
 		AHBottomNavigationItem bibles = new AHBottomNavigationItem(getString(R.string.bibles), ContextCompat.getDrawable(this, R.drawable.icon_bible));
 		AHBottomNavigationItem about = new AHBottomNavigationItem(getString(R.string.about), ContextCompat.getDrawable(this, R.drawable.icon_about));
 
 		bottomNavigation.addItem(books);
-		bottomNavigation.addItem(glossary);
-		bottomNavigation.addItem(tour);
+		//bottomNavigation.addItem(glossary);
+		//bottomNavigation.addItem(tour);
 		bottomNavigation.addItem(bibles);
 		bottomNavigation.addItem(about);
 
@@ -81,15 +79,11 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 				replaceCurrentFragment(BOOKS_FRAGMENT_KEY, BookListFragment.newInstance(), R.string.books);
 				break;
 			case 1:
-				replaceCurrentFragment(GLOSSARY_FRAGMENT_KEY, GlossaryFragment.newInstance(), R.string.glossary);
-				break;
-			case 2:
-				replaceCurrentFragment(TOUR_FRAGMENT_KEY, VirtualTourFragment.newInstance(), R.string.tour);
-				break;
-			case 3:
+				//replaceCurrentFragment(GLOSSARY_FRAGMENT_KEY, GlossaryFragment.newInstance(), R.string.glossary);
 				replaceCurrentFragment(BIBLES_FRAGMENT_KEY, BiblesFragment.newInstance(), R.string.bibles);
 				break;
-			case 4:
+			case 2:
+				//replaceCurrentFragment(TOUR_FRAGMENT_KEY, VirtualTourFragment.newInstance(), R.string.tour);
 				replaceCurrentFragment(ABOUT_FRAGMENT_KEY, AboutFragment.newInstance(), R.string.about);
 				break;
 			default:
