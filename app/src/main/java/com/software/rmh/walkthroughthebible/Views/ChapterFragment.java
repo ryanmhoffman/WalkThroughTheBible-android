@@ -2,7 +2,6 @@ package com.software.rmh.walkthroughthebible.Views;
 
 
 import android.app.Fragment;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
@@ -64,7 +63,8 @@ public class ChapterFragment extends Fragment {
 		scrollView = (ScrollView) root.findViewById(R.id.scroller);
 
 		bookText = (TextView) root.findViewById(R.id.bookText);
-		new BookAsyncTask().execute(book);
+		//new BookAsyncTask().execute(book);
+		bookText.setText(getBookText(book));
 		return root;
 	}
 
@@ -133,7 +133,10 @@ public class ChapterFragment extends Fragment {
 			@Override
 			public void onClick(View view) {
 				counter++;
-				if(getNextOrPreviousChapter() != null) bookText.setText(getNextOrPreviousChapter());
+				if(getNextOrPreviousChapter() != null){
+					bookText.setText("");
+					bookText.setText(getNextOrPreviousChapter());
+				}
 			}
 		});
 
@@ -141,36 +144,31 @@ public class ChapterFragment extends Fragment {
 			@Override
 			public void onClick(View view) {
 				if(counter > 1) counter--;
-				if(getNextOrPreviousChapter() != null) bookText.setText(getNextOrPreviousChapter());
+				if(getNextOrPreviousChapter() != null){
+					bookText.setText("");
+					bookText.setText(getNextOrPreviousChapter());
+				}
 			}
 		});
 	}
 
-	/**
-	 * AsyncTask is used to increase performance for loading each chapter. The file is opened and read from a background thread
-	 * instead of locking up the main thread. Some chapters are very long and take a couple seconds to load, causing noticeable
-	 * lag for the user.
-	 */
-	// TODO: test to see if performance is actually improved or if this is just a waste of code after the updates
-	private class BookAsyncTask extends AsyncTask<String, Long, String> {
+	private void clearViews(){
+		bookText.setText("");
+		next.setVisibility(View.GONE);
+		previous.setVisibility(View.GONE);
+	}
 
-		// On the main thread, before the task starts
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-		}
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+	}
 
-		// On a separate thread in the background
-		@Override
-		protected String doInBackground(String... params) {
-			return getBookText(params[0]);
-		}
-
-		// On the main thread, after background thread is finished
-		@Override
-		protected void onPostExecute(String result) {
-			super.onPostExecute(result);
-			bookText.setText(result);
+	@Override
+	public void onViewStateRestored(Bundle savedInstanceState) {
+		super.onViewStateRestored(savedInstanceState);
+		if(savedInstanceState != null){
+			clearViews();
+			bookText.setText(savedInstanceState.getString("TEXT"));
 		}
 	}
 
