@@ -33,7 +33,7 @@ public class ChapterFragment extends Fragment {
 	private int position;
 	private String book;
 	private Bundle bundle;
-	private int numberOfChapters = 0;
+	private Books chapters = new Books();
 
 	// Count lines in the .txt file to keep track of which chapter the user is on.
 	private int counter = 1;
@@ -55,9 +55,6 @@ public class ChapterFragment extends Fragment {
 
 			book = books.get(position).getName();
 		}
-
-		Books chapters = new Books();
-		numberOfChapters = chapters.getMap().get(book);
 
 		next = (FloatingActionButton) root.findViewById(R.id.nextChapter);
 		previous = (FloatingActionButton) root.findViewById(R.id.previousChapter);
@@ -85,6 +82,7 @@ public class ChapterFragment extends Fragment {
 		} else if(bookText != null){
 			// Reset the ScrollView to the top
 			text = loader.loadAnotherChapter(this.getActivity(), book, counter);
+			if(counter > chapters.getMap().get(book)) counter--;
 			scrollView.scrollTo(0, 0);
 		}
 
