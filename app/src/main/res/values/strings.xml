@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Walk Through The Bible</string>
+    <string name="app_name">Tour The Bible</string>
     <string name="main_activity_title">Books</string>
     <string name="bibles_title">Bibles</string>
     <string name="books">Books</string>
