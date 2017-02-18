@@ -1,10 +1,12 @@
 package com.software.rmh.walkthroughthebible;
 
 import com.software.rmh.walkthroughthebible.Models.BibleLocationsKJV;
+import com.software.rmh.walkthroughthebible.Models.Books;
 
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -47,6 +49,13 @@ public class UnitTests {
 	public void exceptionThrown(){
 		BibleLocationsKJV books = new BibleLocationsKJV();
 		books.getBookLocations(66);
+	}
+
+	@Test
+	public void chapterNumber_isCorrect(){
+		Books books = new Books();
+		Integer psalms = 150;
+		assertEquals("Integer should be 50", psalms, books.getMap().get("Psalms"));
 	}
 
 }
