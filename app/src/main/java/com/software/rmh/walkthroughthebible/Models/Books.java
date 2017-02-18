@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Books {
 
-	public static final Map<String, Integer> map = new HashMap<>();
+	public Map<String, Integer> map = new HashMap<>();
 
 	public Books(){
 		map.put("Genesis", 50);
@@ -81,7 +81,7 @@ public class Books {
 		map.put("Revelations", 22);
 	}
 
-	public static Map<String, Integer> getMap() {
+	public Map<String, Integer> getMap() {
 		return map;
 	}
 }
