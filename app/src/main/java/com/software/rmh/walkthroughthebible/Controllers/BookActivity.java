@@ -21,6 +21,9 @@ public class BookActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 	private ArrayList<Book> books = new ArrayList<>();
 	private int position;
+	private ChapterFragment fragment;
+
+	private static String FRAG_TAG = "CHAPTER_FRAGMENT";
 
 	private FragmentManager fm = getFragmentManager();
 
@@ -31,9 +34,14 @@ public class BookActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 		Bundle bundle = getIntent().getExtras();
 		if(bundle != null){
-			ChapterFragment fragment = new ChapterFragment();
-			fragment.setArguments(bundle);
-			fm.beginTransaction().add(R.id.bookContainer, fragment).commit();
+			fragment = (ChapterFragment) fm.findFragmentByTag(FRAG_TAG);
+
+			if(fragment == null){
+				fragment = new ChapterFragment();
+				fragment.setArguments(bundle);
+			}
+
+			fm.beginTransaction().replace(R.id.bookContainer, fragment, FRAG_TAG).commit();
 
 			Wrapper wrapper = (Wrapper) bundle.getSerializable("ARRAYLIST");
 			books = wrapper.getBooks();

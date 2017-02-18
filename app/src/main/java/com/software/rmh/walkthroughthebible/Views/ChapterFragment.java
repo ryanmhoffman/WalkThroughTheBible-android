@@ -63,7 +63,10 @@ public class ChapterFragment extends Fragment {
 		scrollView = (ScrollView) root.findViewById(R.id.scroller);
 
 		bookText = (TextView) root.findViewById(R.id.bookText);
-		if(savedInstanceState == null) bookText.setText(requestBookText());
+
+		if(savedInstanceState == null){
+			bookText.setText(requestBookText());
+		}
 
 		return root;
 	}
@@ -113,15 +116,18 @@ public class ChapterFragment extends Fragment {
 		});
 	}
 
+	/**
+	 * Clears the TextView of any old content so it can have new text loaded in.
+	 */
 	private void clearViews(){
 		bookText.setText("");
-		next.setVisibility(View.GONE);
-		previous.setVisibility(View.GONE);
 	}
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
+		// Add the counter to the outState Bundle on state change
+		outState.putInt("COUNTER", counter);
 	}
 
 	@Override
@@ -129,7 +135,10 @@ public class ChapterFragment extends Fragment {
 		super.onViewStateRestored(savedInstanceState);
 		if(savedInstanceState != null){
 			clearViews();
-			bookText.setText(savedInstanceState.getString("TEXT"));
+
+			// Reset the counter to the correct chapter
+			counter = savedInstanceState.getInt("COUNTER");
+			bookText.setText(requestBookText());
 		}
 	}
 
