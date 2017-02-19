@@ -54,14 +54,16 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 		AHBottomNavigationItem bibles = new AHBottomNavigationItem(getString(R.string.bibles), ContextCompat.getDrawable(this, R.drawable.icon_bible));
 		AHBottomNavigationItem about = new AHBottomNavigationItem(getString(R.string.about), ContextCompat.getDrawable(this, R.drawable.icon_about));
 
-		bottomNavigation.addItem(books);
+
 		//bottomNavigation.addItem(glossary);
 		//bottomNavigation.addItem(tour);
 		bottomNavigation.addItem(bibles);
+		bottomNavigation.addItem(books);
 		bottomNavigation.addItem(about);
 
 		bottomNavigation.setBehaviorTranslationEnabled(true);
 		bottomNavigation.setDefaultBackgroundColor(ContextCompat.getColor(this, R.color.nav_bar_background));
+		bottomNavigation.setCurrentItem(1);
 
 		bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
 			@Override
@@ -76,11 +78,11 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 
 		switch(position){
 			case 0:
-				replaceCurrentFragment(BOOKS_FRAGMENT_KEY, BookListFragment.newInstance(), R.string.books);
+				replaceCurrentFragment(BIBLES_FRAGMENT_KEY, BiblesFragment.newInstance(), R.string.bibles);
 				break;
 			case 1:
 				//replaceCurrentFragment(GLOSSARY_FRAGMENT_KEY, GlossaryFragment.newInstance(), R.string.glossary);
-				replaceCurrentFragment(BIBLES_FRAGMENT_KEY, BiblesFragment.newInstance(), R.string.bibles);
+				replaceCurrentFragment(BOOKS_FRAGMENT_KEY, BookListFragment.newInstance(), R.string.books);
 				break;
 			case 2:
 				//replaceCurrentFragment(TOUR_FRAGMENT_KEY, VirtualTourFragment.newInstance(), R.string.tour);

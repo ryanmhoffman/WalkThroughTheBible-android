@@ -50,4 +50,17 @@ public class ChapterLoader {
 		return text;
 	}
 
+	private String[] getLocationsForChapter(int bookIndex, int chapterNumber){
+		BibleLocationsKJV locations = new BibleLocationsKJV();
+		String[][] book = locations.getBookLocations(bookIndex);
+		return book[chapterNumber];
+	}
+
+	private void highlightLocations(int bookIndex, int chapterNumber){
+		String[] cities = getLocationsForChapter(bookIndex, chapterNumber);
+		for(String city : cities) {
+
+		}
+	}
+
 }

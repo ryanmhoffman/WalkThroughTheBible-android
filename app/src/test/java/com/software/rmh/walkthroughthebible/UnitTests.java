@@ -55,7 +55,7 @@ public class UnitTests {
 	public void chapterNumber_isCorrect(){
 		Books books = new Books();
 		Integer psalms = 150;
-		Integer result = 0;
+		Integer result;
 		result = books.getMap().get("Psalms");
 		assertEquals("Integer should be 50", psalms, result);
 	}

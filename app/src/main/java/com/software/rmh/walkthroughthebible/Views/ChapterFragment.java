@@ -29,10 +29,7 @@ public class ChapterFragment extends Fragment {
 	private FloatingActionButton next;
 	private ScrollView scrollView;
 
-	private ArrayList<Book> books = new ArrayList<>();
-	private int position;
 	private String book;
-	private Bundle bundle;
 	private Books chapters = new Books();
 
 	// Count lines in the .txt file to keep track of which chapter the user is on.
@@ -48,10 +45,11 @@ public class ChapterFragment extends Fragment {
 		// Inflate the layout for this fragment
 		View root = inflater.inflate(R.layout.fragment_chapter, container, false);
 
+		Bundle bundle;
 		if((bundle = getArguments()) != null){
 			Wrapper wrapper = (Wrapper) bundle.getSerializable("ARRAYLIST");
-			books = wrapper.getBooks();
-			position = bundle.getInt("BOOK_POSITION");
+			ArrayList<Book> books = wrapper.getBooks();
+			int position = bundle.getInt("BOOK_POSITION");
 
 			book = books.get(position).getName();
 		}
