@@ -76,13 +76,13 @@ public class ChapterFragment extends Fragment {
 	 */
 	private String requestBookText(){
 		String text = null;
-		ChapterLoader loader = new ChapterLoader();
+		ChapterLoader loader = new ChapterLoader(this.getActivity());
 
 		if((counter == 1) && (bookText != null)){
-			text = loader.loadChapter(this.getActivity(), book);
+			text = loader.loadChapter(book);
 		} else if(bookText != null){
 			// Reset the ScrollView to the top
-			text = loader.loadAnotherChapter(this.getActivity(), book, counter);
+			text = loader.loadAnotherChapter(book, counter);
 			if(counter > chapters.getMap().get(book)) counter--;
 			scrollView.scrollTo(0, 0);
 		}

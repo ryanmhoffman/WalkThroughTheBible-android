@@ -12,11 +12,13 @@ import java.io.LineNumberReader;
 
 public class ChapterLoader {
 
-	public ChapterLoader(){
+	Context context;
 
+	public ChapterLoader(Context context){
+		this.context = context;
 	}
 
-	public String loadChapter(Context context, String book){
+	public String loadChapter(String book){
 		String text = null;
 		// Use try with resources so the BufferedReader gets closed automatically when exiting.
 		try(LineNumberReader reader =
@@ -30,7 +32,7 @@ public class ChapterLoader {
 		return text;
 	}
 
-	public String loadAnotherChapter(Context context, String book, int counter){
+	public String loadAnotherChapter(String book, int counter){
 		String text = null;
 		// Use try with resources so the BufferedReader gets closed automatically when exiting.
 		try(LineNumberReader reader =
