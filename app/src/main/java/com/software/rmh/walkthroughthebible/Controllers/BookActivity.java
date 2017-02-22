@@ -17,7 +17,15 @@ import com.software.rmh.walkthroughthebible.Views.ChapterFragment;
 
 import java.util.ArrayList;
 
-public class BookActivity extends AppCompatActivity implements OnMapReadyCallback{
+/**
+ * BookActivity is an Activity that controls the map, and the book and chapter that is selected. The map is displayed as the top
+ * half of the screen in portrait or as the left half of the screen in landscape orientation. The remaining portion is the chapter
+ * of the Bible that is to be displayed.
+ *
+ * BookActivity manages the state and content of the two Fragments. It acts as the controller and each Fragment is a view. All
+ * communication with the Model(s) are to go through this class.
+ */
+public class BookActivity extends AppCompatActivity implements OnMapReadyCallback, ChapterFragment.OnTextReadyCallback {
 
 	private ArrayList<Book> books = new ArrayList<>();
 	private int position;
@@ -60,5 +68,10 @@ public class BookActivity extends AppCompatActivity implements OnMapReadyCallbac
 		LatLng Jerusalem = new LatLng(31.7683, 35.2137);
 		googleMap.addMarker(new MarkerOptions().position(Jerusalem).title("Canton, OH"));
 		googleMap.moveCamera(CameraUpdateFactory.newLatLng(Jerusalem));
+	}
+
+	@Override
+	public void getText() {
+		// To be refactored.
 	}
 }

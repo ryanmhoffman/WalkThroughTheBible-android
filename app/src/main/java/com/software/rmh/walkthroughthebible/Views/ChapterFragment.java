@@ -140,4 +140,8 @@ public class ChapterFragment extends Fragment {
 		}
 	}
 
+	public interface OnTextReadyCallback {
+		void getText();
+	}
+
 }
