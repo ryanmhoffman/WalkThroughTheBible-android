@@ -11,6 +11,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.software.rmh.walkthroughthebible.Models.Book;
+import com.software.rmh.walkthroughthebible.Models.ChapterLoader;
 import com.software.rmh.walkthroughthebible.Models.Wrapper;
 import com.software.rmh.walkthroughthebible.R;
 import com.software.rmh.walkthroughthebible.Views.ChapterFragment;
@@ -30,6 +31,8 @@ public class BookActivity extends AppCompatActivity implements OnMapReadyCallbac
 	private ArrayList<Book> books = new ArrayList<>();
 	private int position;
 	private ChapterFragment fragment;
+
+	private String text = null;
 
 	private static String FRAG_TAG = "CHAPTER_FRAGMENT";
 
@@ -71,7 +74,20 @@ public class BookActivity extends AppCompatActivity implements OnMapReadyCallbac
 	}
 
 	@Override
-	public void getText() {
-		// To be refactored.
+	public void getText(String book, int chapter) {
+		ChapterLoader loader = new ChapterLoader(this);
+
+		// Make sure fragment points to the correct Fragment.
+		if(fragment == null) fragment = (ChapterFragment) fm.findFragmentByTag(FRAG_TAG);
+
+		// Get the chapter text from ChapterLoader and set the text in the ChapterFragment.
+		if(chapter == 1){
+			text = loader.loadChapter(book);
+			fragment.setChapterText(text);
+		} else {
+			text = loader.loadAnotherChapter(book, chapter);
+			fragment.setChapterText(text);
+		}
+
 	}
 }

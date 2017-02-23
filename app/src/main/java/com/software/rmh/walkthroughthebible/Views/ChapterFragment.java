@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.software.rmh.walkthroughthebible.Models.Book;
 import com.software.rmh.walkthroughthebible.Models.Books;
-import com.software.rmh.walkthroughthebible.Models.ChapterLoader;
 import com.software.rmh.walkthroughthebible.Models.Wrapper;
 import com.software.rmh.walkthroughthebible.R;
 
@@ -28,6 +27,8 @@ public class ChapterFragment extends Fragment {
 	private FloatingActionButton previous;
 	private FloatingActionButton next;
 	private ScrollView scrollView;
+
+	private OnTextReadyCallback callback;
 
 	private String book;
 	private Books chapters = new Books();
@@ -54,6 +55,8 @@ public class ChapterFragment extends Fragment {
 			book = books.get(position).getName();
 		}
 
+		callback = (OnTextReadyCallback) this.getActivity();
+
 		next = (FloatingActionButton) root.findViewById(R.id.nextChapter);
 		previous = (FloatingActionButton) root.findViewById(R.id.previousChapter);
 		setFABListeners();
@@ -63,31 +66,36 @@ public class ChapterFragment extends Fragment {
 		bookText = (TextView) root.findViewById(R.id.bookText);
 
 		if(savedInstanceState == null){
-			bookText.setText(requestBookText());
+			requestBookText();
 		}
 
 		return root;
 	}
 
 	/**
-	 * Requests the text of the chapter from ChapterLoader.
+	 * Requests the text of the chapter from BookActivity.
 	 *
 	 * @return String containing the requested chapter.
 	 */
-	private String requestBookText(){
-		String text = null;
-		ChapterLoader loader = new ChapterLoader(this.getActivity());
+	private void requestBookText(){
 
-		if((counter == 1) && (bookText != null)){
-			text = loader.loadChapter(book);
-		} else if(bookText != null){
-			// Reset the ScrollView to the top
-			text = loader.loadAnotherChapter(book, counter);
-			if(counter > chapters.getMap().get(book)) counter--;
-			scrollView.scrollTo(0, 0);
-		}
+		callback.getText(book, counter);
 
-		return text;
+		// Reset the ScrollView to the top and decrement counter if it
+		// is above the total number of chapters in the book.
+		if(counter > chapters.getMap().get(book)) counter--;
+		scrollView.scrollTo(0, 0);
+	}
+
+	/**
+	 * This method is called by BookActivity after the OnTextReadyCallback interface is called.
+	 * That will retrieve the full chapter from ChapterLoader, then call this method and pass
+	 * the text of the chapter in as a String. This then sets the TextView text.
+	 *
+	 * @param text a String representing one full chapter of the book.
+	 */
+	public void setChapterText(String text){
+		bookText.setText(text);
 	}
 
 	private void setFABListeners(){
@@ -95,10 +103,7 @@ public class ChapterFragment extends Fragment {
 			@Override
 			public void onClick(View view) {
 				counter++;
-				if(requestBookText() != null){
-					bookText.setText("");
-					bookText.setText(requestBookText());
-				}
+				requestBookText();
 			}
 		});
 
@@ -106,10 +111,7 @@ public class ChapterFragment extends Fragment {
 			@Override
 			public void onClick(View view) {
 				if(counter > 1) counter--;
-				if(requestBookText() != null){
-					bookText.setText("");
-					bookText.setText(requestBookText());
-				}
+				requestBookText();
 			}
 		});
 	}
@@ -136,12 +138,12 @@ public class ChapterFragment extends Fragment {
 
 			// Reset the counter to the correct chapter
 			counter = savedInstanceState.getInt("COUNTER");
-			bookText.setText(requestBookText());
+			requestBookText();
 		}
 	}
 
 	public interface OnTextReadyCallback {
-		void getText();
+		void getText(String book, int chapter);
 	}
 
 }
