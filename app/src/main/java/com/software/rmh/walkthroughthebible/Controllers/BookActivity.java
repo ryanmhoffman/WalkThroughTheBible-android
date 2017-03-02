@@ -32,8 +32,6 @@ public class BookActivity extends AppCompatActivity implements OnMapReadyCallbac
 	private int position;
 	private ChapterFragment fragment;
 
-	private String text = null;
-
 	private static String FRAG_TAG = "CHAPTER_FRAGMENT";
 
 	private FragmentManager fm = getFragmentManager();
@@ -69,7 +67,7 @@ public class BookActivity extends AppCompatActivity implements OnMapReadyCallbac
 	@Override
 	public void onMapReady(GoogleMap googleMap) {
 		LatLng Jerusalem = new LatLng(31.7683, 35.2137);
-		googleMap.addMarker(new MarkerOptions().position(Jerusalem).title("Canton, OH"));
+		googleMap.addMarker(new MarkerOptions().position(Jerusalem).title("Jerusalem"));
 		googleMap.moveCamera(CameraUpdateFactory.newLatLng(Jerusalem));
 	}
 
@@ -81,6 +79,7 @@ public class BookActivity extends AppCompatActivity implements OnMapReadyCallbac
 		if(fragment == null) fragment = (ChapterFragment) fm.findFragmentByTag(FRAG_TAG);
 
 		// Get the chapter text from ChapterLoader and set the text in the ChapterFragment.
+		String text = null;
 		if(chapter == 1){
 			text = loader.loadChapter(book);
 			fragment.setChapterText(text);
