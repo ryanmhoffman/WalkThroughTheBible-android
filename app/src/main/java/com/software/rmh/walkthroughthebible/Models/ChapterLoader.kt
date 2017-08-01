@@ -8,17 +8,19 @@ import java.io.LineNumberReader
 
 /**
  * Created by RMH on 2/17/17.
-
  */
 
 class ChapterLoader(internal var context: Context) {
 
+    // I could probably combine this function with the one below it.
+    // I would have to check to see if the first chapter had already been 
+    // loaded, and if so, run through the loop.
 	fun loadChapter(book: String): String {
-		var text: String? = null
-		// Use try with resources so the BufferedReader gets closed automatically when exiting.
+		var text: String = ""
 		try {
-			LineNumberReader(InputStreamReader(context.assets.open("KingJamesVersion/$book.txt"))).use { reader ->
-
+			LineNumberReader(
+                InputStreamReader(
+                    context.assets.open("KingJamesVersion/$book.txt"))).use { reader ->
 				if ((text = reader.readLine()) != null) return text
 			}
 		} catch (e: IOException) {
@@ -29,12 +31,13 @@ class ChapterLoader(internal var context: Context) {
 	}
 
 	fun loadAnotherChapter(book: String, counter: Int): String {
-		var text: String? = null
-		// Use try with resources so the BufferedReader gets closed automatically when exiting.
+		var text: String = ""
 		try {
-			LineNumberReader(InputStreamReader(context.assets.open("KingJamesVersion/$book.txt"))).use { reader ->
+			LineNumberReader(
+                InputStreamReader(
+                    context.assets.open("KingJamesVersion/$book.txt"))).use { reader ->
 				var line: String
-				// Loop through all lines before the one needed, stopping at the correct one.
+                // Skip past all lines until arriving at the one needed.
 				for (i in 0..counter - 1) {
 					if ((line = reader.readLine()) != null) {
 						text = line
@@ -49,7 +52,8 @@ class ChapterLoader(internal var context: Context) {
 		return text
 	}
 
-	private fun getLocationsForChapter(bookIndex: Int, chapterNumber: Int): Array<String> {
+	private fun getLocationsForChapter(
+                    bookIndex: Int, chapterNumber: Int): Array<String> {
 		val locations = BibleLocationsKJV()
 		val book = locations.getBookLocations(bookIndex)
 		return book[chapterNumber]

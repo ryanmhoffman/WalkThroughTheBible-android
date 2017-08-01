@@ -13,7 +13,8 @@ import com.software.rmh.walkthroughthebible.R
  * [RecyclerView.Adapter] that can display a list of Strings.
  */
 
-class CustomBiblesAdapter(private val bibles: List<String>) : RecyclerView.Adapter<CustomBiblesAdapter.CustomViewHolder>() {
+class CustomBiblesAdapter(private val bibles: List<String>) : 
+                RecyclerView.Adapter<CustomBiblesAdapter.CustomViewHolder>() {
 
 	fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
 		val view = LayoutInflater.from(parent.context)
@@ -25,14 +26,16 @@ class CustomBiblesAdapter(private val bibles: List<String>) : RecyclerView.Adapt
 
 		holder.textView.text = bibles[position]
 		if (position == 1) {
-			holder.textView.setTextColor(ContextCompat.getColor(holder.textView.context, android.R.color.darker_gray))
+			holder.textView.setTextColor(ContextCompat.getColor(
+                            holder.textView.context, android.R.color.darker_gray))
 		}
 	}
 
 	val itemCount: Int
 		get() = bibles.size
 
-	inner class CustomViewHolder private constructor(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+	inner class CustomViewHolder private constructor(view: View) : 
+                            RecyclerView.ViewHolder(view), View.OnClickListener {
 		private val textView: TextView
 
 		init {
@@ -44,5 +47,4 @@ class CustomBiblesAdapter(private val bibles: List<String>) : RecyclerView.Adapt
 			// Intent to start new Activity to read the select book with the map.
 		}
 	}
-
 }

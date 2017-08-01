@@ -8,11 +8,13 @@ import java.io.Serializable
 /**
  * Created by rhoffman on 2/9/17.
 
- * Represents one book of the Bible. It only contains information about the book, it does not have all of the text that makes up
- * the book. The actual content of each book is pulled from a .txt file at runtime.
-
- * This class only contains, the Name, the Index number in standard Biblical order, the number of chapters, and a reference of
- * every location mentioned within the book.
+ * Represents one book of the Bible. It only contains information about the 
+ * book, it does not have all of the text that makes up the book. The actual 
+ * content of each book is pulled from a .txt file at runtime.
+ * 
+ * This class only contains, the Name, the Index number in standard Biblical 
+ * order, the number of chapters, and a reference of every location mentioned 
+ * within the book.
  */
 
 class Book : Parcelable, Serializable {
@@ -23,26 +25,34 @@ class Book : Parcelable, Serializable {
 	private var locations: Array<Array<String>>? = null
 
 	/**
-	 * If this constructor is used, the variables will be null until they are set with the setter methods.
-
-	 * Use with caution as it is possible to call a getter before a setter and have a null value returned.
+	 * If this constructor is used, the variables will be null until they are 
+     * set with the setter methods.
+     *
+	 * Use with caution as it is possible to call a getter before a setter and 
+     * have a null value returned.
 	 */
 	constructor() {
 		// Empty constructor.
 	}
 
 	/**
-	 * Optional constructor to set all the variables at once instead of using the setter methods.
+	 * Optional constructor to set all the variables at once instead of using 
+     * the setter methods.
 
 	 * @param name a String that is just the name of the book of the Bible.
-	 * *
+	 * 
 	 * @param chapters an int representing the number of chapters the book has.
-	 * *
-	 * @param index an int representing the numerical value of the book when in order as in a typical Bible.
-	 * *
-	 * @param locations a two-dimensional array listing all locations referenced in the book, sorted by chapter.
+	 * 
+	 * @param index an int representing the numerical value of the book when 
+     * in order as in a typical Bible.
+	 * 
+	 * @param locations a two-dimensional array listing all locations 
+     * referenced in the book, sorted by chapter.
 	 */
-	constructor(name: String, chapters: Int, index: Int, locations: Array<Array<String>>) {
+	constructor(name: String, 
+                chapters: Int, 
+                index: Int, 
+                locations: Array<Array<String>>) {
 		this.name = name
 		this.chapters = chapters
 		this.index = index
@@ -66,11 +76,11 @@ class Book : Parcelable, Serializable {
 	}
 
 	/**
-	 * Sets chapters variable if not set by the optional constructor. Returns the Book object so the methods can be chained
-	 * together if desired.
-
+	 * Sets chapters variable if not set by the optional constructor. Returns 
+     * the Book object so the methods can be chained together if desired.
+     *
 	 * @param chapters an int representing the number of chapters the book has.
-	 * *
+	 * 
 	 * @return Book
 	 */
 	fun setChapters(chapters: Int): Book {
@@ -79,11 +89,12 @@ class Book : Parcelable, Serializable {
 	}
 
 	/**
-	 * Sets index variable if not set by the optional constructor. Returns the Book object so the methods can be chained
-	 * together if desired.
-
-	 * @param index an int representing the numerical value of the book when in order as in a typical Bible.
-	 * *
+	 * Sets index variable if not set by the optional constructor. Returns the 
+     * Book object so the methods can be chained together if desired.
+     *
+	 * @param index an int representing the numerical value of the book when 
+     * in order as in a typical Bible.
+	 * 
 	 * @return Book
 	 */
 	fun setIndex(index: Int): Book {
@@ -92,10 +103,12 @@ class Book : Parcelable, Serializable {
 	}
 
 	/**
-	 * Sets locations variable if not set by the optional constructor. Returns the Book object so the methods can be chained
-	 * together if desired.
-	 * @param locations a two-dimensional array listing all locations referenced in the book, sorted by chapter.
-	 * *
+	 * Sets locations variable if not set by the optional constructor. Returns 
+     * the Book object so the methods can be chained together if desired.
+     * 
+	 * @param locations a two-dimensional array listing all locations 
+     * referenced in the book, sorted by chapter.
+	 * 
 	 * @return Book
 	 */
 	fun setLocations(locations: Array<Array<String>>): Book {
@@ -104,11 +117,11 @@ class Book : Parcelable, Serializable {
 	}
 
 	/**
-	 * Sets name variable if not set by the optional constructor. Returns the Book object so the methods can be chained
-	 * together if desired.
-
+	 * Sets name variable if not set by the optional constructor. Returns the 
+     * Book object so the methods can be chained together if desired.
+     * 
 	 * @param name a String that is just the name of the book of the Bible.
-	 * *
+	 * 
 	 * @return Book
 	 */
 	fun setName(name: String): Book {
@@ -135,7 +148,8 @@ class Book : Parcelable, Serializable {
 
 	companion object {
 
-		val CREATOR: Parcelable.Creator<Book> = object : Parcelable.Creator<Book> {
+		val CREATOR: Parcelable.Creator<Book> = 
+                                    object : Parcelable.Creator<Book> {
 			override fun createFromParcel(`in`: Parcel): Book {
 				return Book(`in`)
 			}

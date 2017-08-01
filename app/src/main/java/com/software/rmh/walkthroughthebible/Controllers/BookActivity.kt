@@ -19,14 +19,17 @@ import com.software.rmh.walkthroughthebible.Views.ChapterFragment
 import java.util.ArrayList
 
 /**
- * BookActivity is an Activity that controls the map, and the book and chapter that is selected. The map is displayed as the top
- * half of the screen in portrait or as the left half of the screen in landscape orientation. The remaining portion is the chapter
- * of the Bible that is to be displayed.
-
- * BookActivity manages the state and content of the two Fragments. It acts as the controller and each Fragment is a view. All
- * communication with the Model(s) are to go through this class.
+ * BookActivity is an Activity that controls the map, and the book and chapter 
+ * that is selected. The map is displayed as the top half of the screen in 
+ * portrait or as the left half of the screen in landscape orientation. The 
+ * remaining portion is the chapter of the Bible that is to be displayed.
+ * 
+ * BookActivity manages the state and content of the two Fragments. It acts as 
+ * the controller and each Fragment is a view. All communication with the 
+ * Model(s) are to go through this class.
  */
-class BookActivity : AppCompatActivity(), OnMapReadyCallback, ChapterFragment.OnTextReadyCallback {
+class BookActivity : AppCompatActivity(), OnMapReadyCallback, 
+                                        ChapterFragment.OnTextReadyCallback {
 
 	private var books = ArrayList<Book>()
 	private var position: Int = 0
@@ -47,7 +50,8 @@ class BookActivity : AppCompatActivity(), OnMapReadyCallback, ChapterFragment.On
 				fragment!!.arguments = bundle
 			}
 
-			fm.beginTransaction().replace(R.id.bookContainer, fragment, FRAG_TAG).commit()
+			fm.beginTransaction()
+                .replace(R.id.bookContainer, fragment, FRAG_TAG).commit()
 
 			val wrapper = bundle!!.getSerializable("ARRAYLIST") as Wrapper
 			books = wrapper.books
@@ -55,9 +59,11 @@ class BookActivity : AppCompatActivity(), OnMapReadyCallback, ChapterFragment.On
 		}
 
 		// Set the ActionBar title to the name of the book.
-		if (getSupportActionBar() != null) getSupportActionBar().setTitle(books[position].name)
+		if (getSupportActionBar() != null) 
+            getSupportActionBar().setTitle(books[position].name)
 
-		val mapFragment = getFragmentManager().findFragmentById(R.id.map) as MapFragment
+		val mapFragment = getFragmentManager()
+                                    .findFragmentById(R.id.map) as MapFragment
 		mapFragment.getMapAsync(this)
 	}
 
@@ -73,7 +79,8 @@ class BookActivity : AppCompatActivity(), OnMapReadyCallback, ChapterFragment.On
 		// Make sure fragment points to the correct Fragment.
 		if (fragment == null) fragment = fm.findFragmentByTag(FRAG_TAG)
 
-		// Get the chapter text from ChapterLoader and set the text in the ChapterFragment.
+		// Get the chapter text from ChapterLoader and set the text in the 
+        // ChapterFragment.
 		var text: String? = null
 		if (chapter == 1) {
 			text = loader.loadChapter(book)
@@ -86,7 +93,6 @@ class BookActivity : AppCompatActivity(), OnMapReadyCallback, ChapterFragment.On
 	}
 
 	companion object {
-
 		private val FRAG_TAG = "CHAPTER_FRAGMENT"
 	}
 }
