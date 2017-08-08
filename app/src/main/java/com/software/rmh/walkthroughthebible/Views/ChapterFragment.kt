@@ -10,12 +10,9 @@ import android.view.ViewGroup
 import android.widget.ScrollView
 import android.widget.TextView
 
-import com.software.rmh.walkthroughthebible.Models.Book
 import com.software.rmh.walkthroughthebible.Models.Books
 import com.software.rmh.walkthroughthebible.Models.Wrapper
 import com.software.rmh.walkthroughthebible.R
-
-import java.util.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -78,7 +75,7 @@ class ChapterFragment : Fragment() {
 
 		// Reset the ScrollView to the top and decrement counter if it
 		// is above the total number of chapters in the book.
-		if (counter > chapters.getMap().get(book)) counter--
+		if (counter > chapters.getBooksMap().get(book)) counter--
 		scrollView!!.scrollTo(0, 0)
 	}
 

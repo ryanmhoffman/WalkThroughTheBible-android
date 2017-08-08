@@ -59,19 +59,19 @@ class Book : Parcelable, Serializable {
 		this.locations = locations
 	}
 
-	fun getName(): String {
+	fun getName(): String? {
 		return name
 	}
 
-	fun getChapters(): Int {
+	fun getChapters(): Int? {
 		return chapters
 	}
 
-	fun getIndex(): Int {
+	fun getIndex(): Int? {
 		return index
 	}
 
-	fun getLocations(): Array<Array<String>> {
+	fun getLocations(): Array<Array<String>>? {
 		return locations
 	}
 
@@ -154,7 +154,7 @@ class Book : Parcelable, Serializable {
 				return Book(`in`)
 			}
 
-			override fun newArray(size: Int): Array<Book> {
+			override fun newArray(size: Int): Array<Book?> {
 				return arrayOfNulls(size)
 			}
 		}

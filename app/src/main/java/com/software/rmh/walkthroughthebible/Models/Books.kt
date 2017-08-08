@@ -1,6 +1,6 @@
 package com.software.rmh.walkthroughthebible.Models
 
-import java.util.HashMap
+import java.util.*
 
 /**
  * Created by rhoffman on 2/2/17.
@@ -81,7 +81,7 @@ class Books {
 		map.put("Revelations", 22)
 	}
 
-	fun getMap(): Map<String, Int> {
+	fun getBooksMap(): Map<String, Int> {
 		return map
 	}
 }
