@@ -1,6 +1,7 @@
 package com.software.rmh.walkthroughthebible.Models
 
 import android.content.Context
+import com.software.rmh.walkthroughthebible.Enums.Version
 
 import java.io.IOException
 import java.io.InputStreamReader
@@ -46,9 +47,9 @@ class ChapterLoader(internal var context: Context) {
 	 * @param book The name of the Book
 	 * @param counter The number of chapters in the Book
 	 *
-	 * @return String? It will return the line containing the chapter corresponding
-	 * to the number it is on, except when at the beginning or end of a book,
-	 * then it returns null.
+	 * @return String? It will return the line containing the chapter
+	 * corresponding to the number it is on, except when at the beginning or
+	 * end of a book, then it returns null.
 	 */
 	fun loadAnotherChapter(book: String, counter: Int): String? {
 		var text: String? = null
@@ -71,6 +72,39 @@ class ChapterLoader(internal var context: Context) {
 		}
 
 		return text
+	}
+
+    // TODO: Clean this up, test it, etc.
+	/**
+	 * Algorithm to move between the chapters in a given book. It will allow
+	 * you to move from the first chapter incrementally to the last, but no
+	 * further due to restrictions on the incrementer.
+	 */
+    fun loadAChapter(version: Version = Version.KJV,
+					 book: String, counter: Int): String? {
+		var text: String? = null
+		// Should the "when() be a separate function?"
+        var path: String = ".txt"
+		when(version){
+			Version.KJV -> path = "KingJamesVersion/$book.txt"
+			Version.ESV -> path = ".txt" // ESV not yet supported...
+		}
+		try {
+		    LineNumberReader(
+				InputStreamReader(
+					context.assets.open(path))).use { reader ->
+                var line: String?
+				// Should counter be checked here to ensure it is not out of
+				// bounds for the book?
+				for (i in 0..counter - 1){
+					line = reader.readLine()
+                    text = line
+				}
+			}
+		} catch (e: IOException) {
+			e.printStackTrace()
+		}
+        return text
 	}
 
 	private fun getLocationsForChapter(
