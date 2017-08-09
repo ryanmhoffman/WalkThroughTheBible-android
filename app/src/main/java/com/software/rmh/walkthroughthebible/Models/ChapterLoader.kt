@@ -22,10 +22,11 @@ class ChapterLoader(internal var context: Context) {
     // loaded, and if so, run through the loop.
 	fun loadChapter(book: String): String? {
 		var text: String? = null
+		val path: String = "KingJamesVersion/$book.txt"
 		try {
 			LineNumberReader(
                 InputStreamReader(
-                    context.assets.open("KingJamesVersion/$book.txt"))).use { reader ->
+                    context.assets.open(path))).use { reader ->
 				text = reader.readLine()
 				val line = text
 				if (text != null) return line
@@ -53,10 +54,11 @@ class ChapterLoader(internal var context: Context) {
 	 */
 	fun loadAnotherChapter(book: String, counter: Int): String? {
 		var text: String? = null
+        val path: String = "KingJamesVersion/$book.txt"
 		try {
 			LineNumberReader(
                 InputStreamReader(
-                    context.assets.open("KingJamesVersion/$book.txt"))).use { reader ->
+                    context.assets.open(path))).use { reader ->
                 var line: String?
                 // Skip past all lines until arriving at the one needed.
 				for (i in 0..counter - 1) {
