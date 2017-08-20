@@ -110,7 +110,7 @@ class ChapterLoader(internal var context: Context) {
 	}
 
 	private fun getLocationsForChapter(
-                    bookIndex: Int, chapterNumber: Int): Array<String> {
+                    bookIndex: Int, chapterNumber: Int): Array<out String?> {
 		val locations = BibleLocationsKJV()
 		val book = locations.getBookLocations(bookIndex)
 		return book[chapterNumber]
